@@ -73,6 +73,11 @@
         color: var(--colors-neutral-dark-grayish-blue);
       }
 
+      .header__mark-all-read:disabled {
+        color: var(--colors-neutral-grayish-blue);
+        cursor: not-allowed;
+      }
+
       .badge {
         background-color: var(--colors-primary-blue);
         color: var(--colors-neutral-white);
@@ -209,9 +214,14 @@
     <main class="content">
       <header class="header">
         <h1 class="header__title">
-          Notifications <span class="badge badge--left-spacing">3</span>
+          Notifications
+          <span data-id="notifications-badge" class="badge badge--left-spacing"
+            >3</span
+          >
         </h1>
-        <button class="header__mark-all-read">Mark all as read</button>
+        <button data-id="button-mark-all-read" class="header__mark-all-read">
+          Mark all as read
+        </button>
       </header>
       <ul class="notifications">
         <li>
@@ -373,5 +383,34 @@
         >Samuel Silva</a
       >.
     </footer>
+    <script>
+      (() => {
+        const readAllNotificationsButton = document.querySelector(
+          '[data-id="button-mark-all-read"]'
+        );
+
+        function removeNewNotificationClassName(notificationElement) {
+          notificationElement.classList.remove("notification__card--new");
+        }
+
+        function handleOnClickReadAllNotifications() {
+          const notificationsBadge = document.querySelector(
+            '[data-id="notifications-badge"]'
+          );
+          const allNewNotifications = document.querySelectorAll(
+            ".notification__card--new"
+          );
+
+          notificationsBadge.textContent = "0";
+          allNewNotifications.forEach(removeNewNotificationClassName);
+          readAllNotificationsButton.setAttribute("disabled", true);
+        }
+
+        readAllNotificationsButton.addEventListener(
+          "click",
+          handleOnClickReadAllNotifications
+        );
+      })();
+    </script>
   </body>
 </html>
