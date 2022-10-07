@@ -69,6 +69,10 @@
         font-size: 14px;
       }
 
+      .header__mark-all-read:where(:hover, :focus) {
+        color: var(--colors-neutral-dark-grayish-blue);
+      }
+
       .badge {
         background-color: var(--colors-primary-blue);
         color: var(--colors-neutral-white);
@@ -115,18 +119,21 @@
         color: var(--colors-neutral-grayish-blue);
       }
 
-      .notification__primary-message strong:first-child {
+      .notification__link {
+        color: var(--colors-primary-blue);
+        cursor: pointer;
+      }
+
+      .notification__link--secondary {
         color: var(--colors-neutral-dark-blue);
       }
 
-      .notification__primary-message
-        strong:last-child:not(.notification__primary-message--link) {
+      .notification__link--tertiary {
         color: var(--colors-neutral-dark-grayish-blue);
       }
 
-      .notification__primary-message--link {
+      .notification__link:where(:hover, :focus) {
         color: var(--colors-primary-blue);
-        cursor: pointer;
       }
 
       .notification__card--new .notification__primary-message::after {
@@ -148,8 +155,20 @@
         font-size: 12px;
       }
 
+      .notification__comment:hover {
+        background-color: var(--colors-neutral-light-grayish-blue-1);
+        cursor: pointer;
+      }
+
       .notification__extra-picture {
+        border: 2px solid transparent;
         margin-left: auto;
+        border-radius: 10px;
+      }
+
+      .notification__extra-picture:hover {
+        border-color: var(--colors-neutral-light-grayish-blue-1);
+        cursor: pointer;
       }
 
       .attribution {
@@ -196,7 +215,9 @@
       </header>
       <ul class="notifications">
         <li>
-          <article class="notification__card notification__card--new">
+          <article
+            class="notification__card notification__card--new notification__card--activity-on-post"
+          >
             <img
               src="/notifications-page/images/avatar-mark-webber.webp"
               alt="Profile picture of mark webber"
@@ -204,8 +225,13 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Mark Webber</strong> reacted to your recent post&nbsp;
-                <strong>My first tournament today!</strong>
+                <strong class="notification__link notification__link--secondary"
+                  >Mark Webber</strong
+                >
+                reacted to your recent post&nbsp;
+                <strong class="notification__link notification__link--tertiary"
+                  >My first tournament today!</strong
+                >
               </p>
               <p class="notification__time">1m ago</p>
             </div>
@@ -220,7 +246,10 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Angela Gray</strong> followed you
+                <strong class="notification__link notification__link--secondary"
+                  >Angela Gray</strong
+                >
+                followed you
               </p>
               <p class="notification__time">5m ago</p>
             </div>
@@ -235,10 +264,11 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Jacob Thompson</strong> has joined your group
-                <strong class="notification__primary-message--link"
-                  >Chess Club</strong
+                <strong class="notification__link notification__link--secondary"
+                  >Jacob Thompson</strong
                 >
+                has joined your group
+                <strong class="notification__link">Chess Club</strong>
               </p>
               <p class="notification__time">1 day ago</p>
             </div>
@@ -253,7 +283,10 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Rizky Hasanuddin</strong> sent you a private message
+                <strong class="notification__link notification__link--secondary"
+                  >Rizky Hasanuddin</strong
+                >
+                sent you a private message
               </p>
               <p class="notification__time">5 days ago</p>
               <p class="notification__comment">
@@ -273,7 +306,10 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Kimberly Smith</strong> commented on your picture
+                <strong class="notification__link notification__link--secondary"
+                  >Kimberly Smith</strong
+                >
+                commented on your picture
               </p>
               <p class="notification__time">1 week ago</p>
             </div>
@@ -285,7 +321,9 @@
           </article>
         </li>
         <li>
-          <article class="notification__card">
+          <article
+            class="notification__card notification__card--activity-on-post"
+          >
             <img
               src="/notifications-page/images/avatar-nathan-peterson.webp"
               alt="Profile picture of Nathan Peterson"
@@ -293,9 +331,13 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Nathan Peterson</strong> reacted to your recent
-                post&nbsp;
-                <strong>5 end-game strategies to increase your win rate</strong>
+                <strong class="notification__link notification__link--secondary"
+                  >Nathan Peterson</strong
+                >
+                reacted to your recent post&nbsp;
+                <strong class="notification__link notification__link--tertiary"
+                  >5 end-game strategies to increase your win rate</strong
+                >
               </p>
               <p class="notification__time">2 weeks ago</p>
             </div>
@@ -310,10 +352,11 @@
             />
             <div>
               <p class="notification__primary-message">
-                <strong>Anna Kim</strong> left the group
-                <strong class="notification__primary-message--link"
-                  >Chess Club</strong
+                <strong class="notification__link notification__link--secondary"
+                  >Anna Kim</strong
                 >
+                left the group
+                <strong class="notification__link">Chess Club</strong>
               </p>
               <p class="notification__time">2 weeks ago</p>
             </div>
