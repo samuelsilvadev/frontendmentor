@@ -69,7 +69,8 @@
         font-size: 14px;
       }
 
-      .header__mark-all-read:where(:hover, :focus) {
+      .header__mark-all-read:hover,
+      .header__mark-all-read:focus {
         color: var(--colors-neutral-dark-grayish-blue);
       }
 
@@ -117,6 +118,10 @@
         flex-shrink: 0;
       }
 
+      .notification__primary-message {
+        font-weight: normal;
+      }
+
       .notification__primary-message,
       .notification__time {
         font-size: 12px;
@@ -137,7 +142,8 @@
         color: var(--colors-neutral-dark-grayish-blue);
       }
 
-      .notification__link:where(:hover, :focus) {
+      .notification__link:hover,
+      .notification__link:focus {
         color: var(--colors-primary-blue);
       }
 
