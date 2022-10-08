@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+    />
+
+    <title>Frontend Mentor | Interactive card details form</title>
+
+    <style>
+      :root {
+        --colors-primary-red: hsl(0, 100%, 66%);
+        --colors-primary-blue: hsl(228, 45%, 44%);
+
+        --colors-neutral-white: hsl(0, 0%, 100%);
+        --colors-neutral-light-gray-violet: hsl(270, 3%, 87%);
+        --colors-neutral-dark-gray-violet: hsl(279, 6%, 55%);
+        --colors-neutral-darker-violet: hsl(278, 68%, 11%);
+
+        --form-top-offset: 45px;
+        --front-card-offset-left: 0px;
+        --back-card-offset-left: 0px;
+      }
+
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Space Grotesk";
+      }
+
+      .form-details-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 240px auto;
+      }
+
+      .cards {
+        background-image: url("/interactive-card-details-form/images/bg-main-mobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: var(--colors-neutral-darker-violet);
+      }
+
+      .cards__inner-wrapper {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        max-width: 344px;
+        margin: auto;
+      }
+
+      .cards__front,
+      .cards__back {
+        width: 286px;
+        min-height: 157px;
+        position: absolute;
+      }
+
+      .cards__front {
+        background-image: url("/interactive-card-details-form/images/bg-card-front.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        left: 0;
+        bottom: calc(var(--form-top-offset) * -1);
+        z-index: 2;
+      }
+
+      .cards__back {
+        background-image: url("/interactive-card-details-form/images/bg-card-back.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        top: 30px;
+        right: 0;
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        padding: 5px 0;
+      }
+
+      .attribution a {
+        color: var(--colors-primary-blue);
+      }
+
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: var(--form-top-offset);
+        padding-left: var(--back-card-offset-left);
+      }
+
+      .form {
+        margin-top: 50px;
+        background-color: var(--colors-neutral-dark-gray-violet);
+        margin-bottom: 20px;
+        height: 350px;
+        width: 90%;
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --form-top-offset: 0px;
+          --back-card-offset-left: 50px;
+          --front-card-offset-left: 25px;
+        }
+
+        .form-details-wrapper {
+          grid-template-columns: minmax(340px, 33%) 1fr;
+          grid-template-rows: calc(100vh - 24px) 24px;
+        }
+
+        .form {
+          width: 340px;
+        }
+
+        .cards {
+          grid-row: 1 / -1;
+          background-image: url("/interactive-card-details-form/images/bg-main-desktop.png");
+          display: flex;
+          align-items: center;
+          min-width: 340px;
+        }
+
+        .cards__inner-wrapper {
+          margin-left: 11.25%;
+          max-width: unset;
+          height: 400px;
+        }
+
+        .cards__front,
+        .cards__back {
+          width: 350px;
+          min-height: 193px;
+        }
+
+        .cards__front {
+          top: 0;
+          left: unset;
+          right: calc(var(--front-card-offset-left) * -1);
+        }
+
+        .cards__back {
+          top: unset;
+          bottom: 0;
+          right: calc(var(--back-card-offset-left) * -1);
+        }
+      }
+
+      @media (min-width: 940px) {
+        :root {
+          --back-card-offset-left: 158px;
+          --front-card-offset-left: 90px;
+        }
+
+        .form {
+          width: 383px;
+        }
+
+        .cards__inner-wrapper {
+          height: 416px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        :root {
+          --back-card-offset-left: 223px;
+          --front-card-offset-left: 130px;
+        }
+
+        .cards__inner-wrapper {
+          height: 530px;
+        }
+
+        .cards__front,
+        .cards__back {
+          width: 450px;
+          min-height: 248px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="form-details-wrapper">
+      <aside class="cards">
+        <div class="cards__inner-wrapper">
+          <div class="cards__front"></div>
+          <div class="cards__back"></div>
+        </div>
+      </aside>
+      <div class="form-wrapper">
+        <form class="form"></form>
+      </div>
+      <footer class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://github.com/samuelsilvadev" target="_blank"
+          >Samuel Silva</a
+        >.
+      </footer>
+    </main>
+  </body>
+</html>
