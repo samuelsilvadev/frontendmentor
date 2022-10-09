@@ -284,6 +284,7 @@
               id="card-name"
               type="text"
               placeholder="e.g. Jane Appleseed"
+              autocomplete="cc-name"
             />
           </div>
           <div class="form__item">
@@ -292,6 +293,7 @@
               id="card-number"
               type="number"
               placeholder="e.g. 1234 8888 6574 0000"
+              autocomplete="cc-number"
             />
           </div>
           <div class="form__item form__item--row">
@@ -302,17 +304,24 @@
                   type="number"
                   placeholder="MM"
                   aria-label="Type the expiry month of your card"
+                  autocomplete="cc-exp-month"
                 />
                 <input
                   type="number"
                   placeholder="YY"
                   aria-label="Type the expiry year of your card"
+                  autocomplete="cc-exp-year"
                 />
               </div>
             </fieldset>
             <div class="form__item form__cvc">
               <label for="card-cvc">Cvc</label>
-              <input id="card-cvc" type="number" placeholder="e.g. 123" />
+              <input
+                id="card-cvc"
+                type="number"
+                placeholder="e.g. 123"
+                autocomplete="cc-csc"
+              />
             </div>
           </div>
           <button type="button">Confirm</button>
