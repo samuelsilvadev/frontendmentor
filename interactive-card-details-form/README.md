@@ -48,3 +48,4 @@ Users should be able to:
 ### What I learned
 
 - Usage of `background-image` and auxiliary properties
+- How to make use of the `Constraint validation API`

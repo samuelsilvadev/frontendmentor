@@ -116,7 +116,6 @@
         gap: 20px;
         margin-top: 50px;
         margin-bottom: 20px;
-        height: 350px;
         width: 90%;
       }
 
@@ -145,6 +144,10 @@
 
       .form input:focus {
         border-color: var(--colors-neutral-darker-violet);
+      }
+
+      .form.touched input:invalid {
+        border-color: var(--colors-primary-red);
       }
 
       .form input::placeholder {
@@ -184,6 +187,12 @@
 
       .form__dates .form__item {
         gap: 10px;
+      }
+
+      .form__error {
+        margin-top: 5px;
+        color: var(--colors-primary-red);
+        font-size: 10px;
       }
 
       @media (min-width: 768px) {
@@ -277,7 +286,7 @@
         </div>
       </aside>
       <div class="form-wrapper">
-        <form class="form">
+        <form class="form" data-id="card-form" novalidate>
           <div class="form__item">
             <label for="card-name">Cardholder name</label>
             <input
@@ -285,7 +294,10 @@
               type="text"
               placeholder="e.g. Jane Appleseed"
               autocomplete="cc-name"
+              name="card-name"
+              required
             />
+            <p class="form__error" data-id="card-name"></p>
           </div>
           <div class="form__item">
             <label for="card-number">Card number</label>
@@ -294,7 +306,10 @@
               type="number"
               placeholder="e.g. 1234 8888 6574 0000"
               autocomplete="cc-number"
+              name="card-number"
+              required
             />
+            <p class="form__error" data-id="card-number"></p>
           </div>
           <div class="form__item form__item--row">
             <fieldset class="form__dates">
@@ -305,14 +320,22 @@
                   placeholder="MM"
                   aria-label="Type the expiry month of your card"
                   autocomplete="cc-exp-month"
+                  name="card-expiry-month"
+                  required
                 />
                 <input
                   type="number"
                   placeholder="YY"
                   aria-label="Type the expiry year of your card"
                   autocomplete="cc-exp-year"
+                  name="card-expiry-year"
+                  required
                 />
               </div>
+              <p
+                class="form__error"
+                data-id="card-expiry-month card-expiry-year"
+              ></p>
             </fieldset>
             <div class="form__item form__cvc">
               <label for="card-cvc">Cvc</label>
@@ -321,10 +344,13 @@
                 type="number"
                 placeholder="e.g. 123"
                 autocomplete="cc-csc"
+                name="card-cvc"
+                required
               />
+              <p class="form__error" data-id="card-cvc"></p>
             </div>
           </div>
-          <button type="button">Confirm</button>
+          <button type="submit" data-id="confirm-button">Confirm</button>
         </form>
       </div>
       <footer class="attribution">
@@ -338,4 +364,54 @@
       </footer>
     </main>
   </body>
+  <script type="module">
+    const FIELDS_NAMES = [
+      "card-name",
+      "card-number",
+      "card-expiry-month",
+      "card-expiry-year",
+      "card-cvc",
+    ];
+    const MESSAGES = {
+      REQUIRED: "Can't be blank",
+      ONLY_NUMBER: "Wrong format, numbers only",
+    };
+    const confirmButton = document.querySelector('[data-id="confirm-button"]');
+    const cardForm = document.querySelector('[data-id="card-form"]');
+
+    function validateIfFieldIsEmpty(field) {
+      const errorMessageWrapper = document.querySelector(
+        `[data-id*="${field.name}"]`
+      );
+
+      if (!errorMessageWrapper) {
+        return;
+      }
+
+      errorMessageWrapper.textContent =
+        field.value === "" ? MESSAGES.REQUIRED : "";
+    }
+
+    function applyValidationsForAllFields() {
+      FIELDS_NAMES.forEach((fieldName) => {
+        validateIfFieldIsEmpty(cardForm[fieldName]);
+      });
+    }
+
+    cardForm.addEventListener("input", (event) => {
+      if (cardForm.classList.contains("touched")) {
+        applyValidationsForAllFields();
+      }
+    });
+
+    cardForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      cardForm.classList.add("touched");
+
+      if (!cardForm.checkValidity()) {
+        applyValidationsForAllFields();
+        return;
+      }
+    });
+  </script>
 </html>
