@@ -31,6 +31,8 @@
         --form-top-offset: 45px;
         --front-card-offset-left: 0px;
         --back-card-offset-left: 0px;
+
+        --input-height: 44px;
       }
 
       * {
@@ -109,11 +111,79 @@
       }
 
       .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         margin-top: 50px;
-        background-color: var(--colors-neutral-dark-gray-violet);
         margin-bottom: 20px;
         height: 350px;
         width: 90%;
+      }
+
+      .form label,
+      .form legend {
+        text-transform: uppercase;
+        color: var(--colors-neutral-darker-violet);
+        margin-bottom: 10px;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .form fieldset {
+        border: none;
+      }
+
+      .form input {
+        border: 1px solid var(--colors-neutral-light-gray-violet);
+        height: var(--input-height);
+        border-radius: 5px;
+        padding: 0 15px;
+        color: var(--colors-neutral-darker-violet);
+        font-size: 16px;
+        outline: none;
+      }
+
+      .form input:focus {
+        border-color: var(--colors-neutral-darker-violet);
+      }
+
+      .form input::placeholder {
+        color: var(--colors-neutral-light-gray-violet);
+      }
+
+      .form button {
+        height: var(--input-height);
+        background-color: var(--colors-neutral-darker-violet);
+        color: var(--colors-neutral-white);
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .form__item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form__item--row {
+        flex-direction: row;
+      }
+
+      .form__dates {
+        margin-right: 20px;
+      }
+
+      .form__dates,
+      .form__cvc {
+        width: 50%;
+        flex-grow: 0;
+      }
+
+      .form__dates input {
+        width: 50%;
+      }
+
+      .form__dates .form__item {
+        gap: 10px;
       }
 
       @media (min-width: 768px) {
@@ -207,7 +277,46 @@
         </div>
       </aside>
       <div class="form-wrapper">
-        <form class="form"></form>
+        <form class="form">
+          <div class="form__item">
+            <label for="card-name">Cardholder name</label>
+            <input
+              id="card-name"
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+            />
+          </div>
+          <div class="form__item">
+            <label for="card-number">Card number</label>
+            <input
+              id="card-number"
+              type="number"
+              placeholder="e.g. 1234 8888 6574 0000"
+            />
+          </div>
+          <div class="form__item form__item--row">
+            <fieldset class="form__dates">
+              <legend>Exp. Date (MM/YY)</legend>
+              <div class="form__item form__item--row">
+                <input
+                  type="number"
+                  placeholder="MM"
+                  aria-label="Type the expiry month of your card"
+                />
+                <input
+                  type="number"
+                  placeholder="YY"
+                  aria-label="Type the expiry year of your card"
+                />
+              </div>
+            </fieldset>
+            <div class="form__item form__cvc">
+              <label for="card-cvc">Cvc</label>
+              <input id="card-cvc" type="number" placeholder="e.g. 123" />
+            </div>
+          </div>
+          <button type="button">Confirm</button>
+        </form>
       </div>
       <footer class="attribution">
         Challenge by
