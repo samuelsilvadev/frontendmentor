@@ -303,11 +303,14 @@
             <label for="card-number">Card number</label>
             <input
               id="card-number"
-              type="number"
+              type="text"
               placeholder="e.g. 1234 8888 6574 0000"
               autocomplete="cc-number"
               name="card-number"
               required
+              pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}"
+              minlength="16"
+              maxlength="20"
             />
             <p class="form__error" data-id="card-number"></p>
           </div>
@@ -316,20 +319,26 @@
               <legend>Exp. Date (MM/YY)</legend>
               <div class="form__item form__item--row">
                 <input
-                  type="number"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="(0[1-9]|1[0-2])"
                   placeholder="MM"
                   aria-label="Type the expiry month of your card"
                   autocomplete="cc-exp-month"
                   name="card-expiry-month"
                   required
+                  minlength="2"
                 />
                 <input
-                  type="number"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="\d{2}"
                   placeholder="YY"
                   aria-label="Type the expiry year of your card"
                   autocomplete="cc-exp-year"
                   name="card-expiry-year"
                   required
+                  minlength="2"
                 />
               </div>
               <p
@@ -365,21 +374,22 @@
     </main>
   </body>
   <script type="module">
-    const FIELDS_NAMES = [
-      "card-name",
-      "card-number",
-      "card-expiry-month",
-      "card-expiry-year",
-      "card-cvc",
-    ];
+    const ISOLATED_FIELDS_NAMES = ["card-name", "card-number", "card-cvc"];
+    const COMBINED_FIELDS_NAMES = ["card-expiry-month", "card-expiry-year"];
     const MESSAGES = {
       REQUIRED: "Can't be blank",
-      ONLY_NUMBER: "Wrong format, numbers only",
+      PATTERN: "Wrong format",
+      SHORT: "These is still missing characters",
+    };
+    const PATTERN_MESSAGES_PER_FIELD = {
+      "card-number": "Wrong format, numbers and space only",
+      "card-expiry-month": "Month is between 1-12",
+      "card-expiry-year": "Year is only two digits",
     };
     const confirmButton = document.querySelector('[data-id="confirm-button"]');
     const cardForm = document.querySelector('[data-id="card-form"]');
 
-    function validateIfFieldIsEmpty(field) {
+    function validateField(field) {
       const errorMessageWrapper = document.querySelector(
         `[data-id*="${field.name}"]`
       );
@@ -388,14 +398,33 @@
         return;
       }
 
-      errorMessageWrapper.textContent =
-        field.value === "" ? MESSAGES.REQUIRED : "";
+      const { patternMismatch, valueMissing, tooShort } = field.validity;
+      let errorMessage = "";
+
+      if (valueMissing) {
+        errorMessage = MESSAGES.REQUIRED;
+      } else if (tooShort) {
+        errorMessage = MESSAGES.SHORT;
+      } else if (patternMismatch) {
+        errorMessage =
+          PATTERN_MESSAGES_PER_FIELD[field.name] ?? MESSAGES.PATTERN;
+      }
+
+      errorMessageWrapper.textContent = errorMessage;
     }
 
     function applyValidationsForAllFields() {
-      FIELDS_NAMES.forEach((fieldName) => {
-        validateIfFieldIsEmpty(cardForm[fieldName]);
+      ISOLATED_FIELDS_NAMES.forEach((fieldName) => {
+        validateField(cardForm[fieldName]);
       });
+
+      const [month, year] = COMBINED_FIELDS_NAMES;
+
+      if (!cardForm[month].checkValidity()) {
+        validateField(cardForm[month]);
+      } else {
+        validateField(cardForm[year]);
+      }
     }
 
     cardForm.addEventListener("input", (event) => {
