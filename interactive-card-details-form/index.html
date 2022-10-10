@@ -114,9 +114,18 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+      }
+
+      .form,
+      .form__completed {
+        width: 90%;
         margin-top: 50px;
         margin-bottom: 20px;
-        width: 90%;
+      }
+
+      .form--hidden,
+      .form__completed--hidden {
+        display: none;
       }
 
       .form label,
@@ -154,12 +163,13 @@
         color: var(--colors-neutral-light-gray-violet);
       }
 
-      .form button {
+      .form__button {
         height: var(--input-height);
         background-color: var(--colors-neutral-darker-violet);
         color: var(--colors-neutral-white);
         border-radius: 5px;
         cursor: pointer;
+        border: none;
       }
 
       .form__item {
@@ -195,6 +205,29 @@
         font-size: 10px;
       }
 
+      .form__completed {
+        text-align: center;
+      }
+
+      .form__completed__image {
+        margin-bottom: 25px;
+      }
+
+      .form__completed__title {
+        text-transform: uppercase;
+        color: var(--colors-neutral-darker-violet);
+        margin-bottom: 15px;
+      }
+
+      .form__completed__subtitle {
+        color: var(--colors-neutral-dark-gray-violet);
+        margin-bottom: 40px;
+      }
+
+      .form__completed .form__button {
+        width: 100%;
+      }
+
       @media (min-width: 768px) {
         :root {
           --form-top-offset: 0px;
@@ -207,8 +240,10 @@
           grid-template-rows: calc(100vh - 24px) 24px;
         }
 
-        .form {
+        .form,
+        .form__completed {
           width: 340px;
+          margin: 0;
         }
 
         .cards {
@@ -250,7 +285,8 @@
           --front-card-offset-left: 90px;
         }
 
-        .form {
+        .form,
+        .form__completed {
           width: 383px;
         }
 
@@ -359,8 +395,25 @@
               <p class="form__error" data-id="card-cvc"></p>
             </div>
           </div>
-          <button type="submit" data-id="confirm-button">Confirm</button>
+          <button class="form__button" type="submit" data-id="confirm-button">
+            Confirm
+          </button>
         </form>
+        <section
+          data-id="card-completed-form"
+          class="form__completed form__completed--hidden"
+        >
+          <img
+            class="form__completed__image"
+            src="/interactive-card-details-form/images/icon-complete.svg"
+            alt="Checkmark"
+          />
+          <h2 class="form__completed__title">Thank you</h2>
+          <p class="form__completed__subtitle">We've added your card details</p>
+          <button class="form__button" type="button" data-id="reset-button">
+            Continue
+          </button>
+        </section>
       </div>
       <footer class="attribution">
         Challenge by
@@ -388,6 +441,9 @@
     };
     const confirmButton = document.querySelector('[data-id="confirm-button"]');
     const cardForm = document.querySelector('[data-id="card-form"]');
+    const cardCompletedForm = document.querySelector(
+      '[data-id="card-completed-form"]'
+    );
 
     function validateField(field) {
       const errorMessageWrapper = document.querySelector(
@@ -441,6 +497,9 @@
         applyValidationsForAllFields();
         return;
       }
+
+      cardForm.classList.add("form--hidden");
+      cardCompletedForm.classList.remove("form__completed--hidden");
     });
   </script>
 </html>
