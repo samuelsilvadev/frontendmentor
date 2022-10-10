@@ -440,6 +440,7 @@
       "card-expiry-year": "Year is only two digits",
     };
     const confirmButton = document.querySelector('[data-id="confirm-button"]');
+    const completedButton = document.querySelector('[data-id="reset-button"]');
     const cardForm = document.querySelector('[data-id="card-form"]');
     const cardCompletedForm = document.querySelector(
       '[data-id="card-completed-form"]'
@@ -499,7 +500,13 @@
       }
 
       cardForm.classList.add("form--hidden");
+      cardForm.reset();
       cardCompletedForm.classList.remove("form__completed--hidden");
+    });
+
+    completedButton.addEventListener("click", (event) => {
+      cardCompletedForm.classList.add("form__completed--hidden");
+      cardForm.classList.remove("touched", "form--hidden");
     });
   </script>
 </html>
