@@ -45,6 +45,18 @@
         font-family: "Space Grotesk";
       }
 
+      .text-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
       .form-details-wrapper {
         display: grid;
         grid-template-columns: 1fr;
@@ -406,7 +418,8 @@
   </head>
   <body>
     <main class="form-details-wrapper">
-      <aside class="cards">
+      <h1 class="text-visually-hidden">Fill your card details below</h1>
+      <aside class="cards" aria-hidden="true">
         <div class="cards__inner-wrapper">
           <div class="cards__front">
             <img
