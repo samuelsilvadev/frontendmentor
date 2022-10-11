@@ -29,11 +29,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./images/screenshot.png)
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [interactive-card-details-form](https://frontendmentor-kappa-flame.vercel.app/interactive-card-details-form)
 
 ## My process
 
