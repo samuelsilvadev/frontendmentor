@@ -81,6 +81,45 @@
         left: 0;
         bottom: calc(var(--form-top-offset) * -1);
         z-index: 2;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .cards__front__details {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        row-gap: 14px;
+      }
+
+      .cards__front img {
+        width: 50px;
+      }
+
+      .cards__front__number {
+        color: var(--colors-neutral-white);
+        font-size: 15px;
+        letter-spacing: 2px;
+        grid-column: 1 / -1;
+      }
+
+      .cards__front__name,
+      .cards__front__expiry-date {
+        color: var(--colors-neutral-white);
+        text-transform: uppercase;
+        font-size: 9px;
+        letter-spacing: 2px;
+      }
+
+      .cards__front__name {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .cards__front__expiry-date {
+        text-align: right;
       }
 
       .cards__back {
@@ -89,6 +128,15 @@
         background-size: 100%;
         top: 30px;
         right: 0;
+      }
+
+      .cards__back__cvv {
+        position: absolute;
+        top: 71px;
+        right: 35px;
+        color: var(--colors-neutral-white);
+        font-size: 9px;
+        letter-spacing: 2px;
       }
 
       .attribution {
@@ -263,19 +311,43 @@
         .cards__front,
         .cards__back {
           width: 350px;
-          min-height: 193px;
+          height: 193px;
         }
 
         .cards__front {
           top: 0;
           left: unset;
           right: calc(var(--front-card-offset-left) * -1);
+          padding: 30px;
+        }
+
+        .cards__front img {
+          width: 80px;
         }
 
         .cards__back {
           top: unset;
           bottom: 0;
           right: calc(var(--back-card-offset-left) * -1);
+        }
+
+        .cards__front__details {
+          row-gap: 12px;
+        }
+
+        .cards__front__number {
+          font-size: 16px;
+        }
+
+        .cards__front__name,
+        .cards__front__expiry-date,
+        .cards__back__cvv {
+          font-size: 10px;
+        }
+
+        .cards__back__cvv {
+          top: 88px;
+          right: 43px;
         }
       }
 
@@ -305,10 +377,29 @@
           height: 530px;
         }
 
+        .cards__front__details {
+          row-gap: 20px;
+        }
+
         .cards__front,
         .cards__back {
           width: 450px;
-          min-height: 248px;
+          height: 248px;
+        }
+
+        .cards__front__number {
+          font-size: 24px;
+        }
+
+        .cards__front__name,
+        .cards__front__expiry-date,
+        .cards__back__cvv {
+          font-size: 12px;
+        }
+
+        .cards__back__cvv {
+          top: 113px;
+          right: 55px;
         }
       }
     </style>
@@ -317,8 +408,23 @@
     <main class="form-details-wrapper">
       <aside class="cards">
         <div class="cards__inner-wrapper">
-          <div class="cards__front"></div>
-          <div class="cards__back"></div>
+          <div class="cards__front">
+            <img
+              src="/interactive-card-details-form/images/card-logo.svg"
+              alt="Card logo displayed on the top left of the front card"
+            />
+            <div class="cards__front__details">
+              <p class="cards__front__number" data-id="card-front-number"></p>
+              <p class="cards__front__name" data-id="card-front-name"></p>
+              <p
+                class="cards__front__expiry-date"
+                data-id="card-front-expiry-date"
+              ></p>
+            </div>
+          </div>
+          <div class="cards__back">
+            <p class="cards__back__cvv" data-id="card-back-cvv"></p>
+          </div>
         </div>
       </aside>
       <div class="form-wrapper">
@@ -445,6 +551,14 @@
     const cardCompletedForm = document.querySelector(
       '[data-id="card-completed-form"]'
     );
+    const cardFrontNumber = document.querySelector(
+      '[data-id="card-front-number"]'
+    );
+    const cardFrontName = document.querySelector('[data-id="card-front-name"]');
+    const cardFrontExpiryDate = document.querySelector(
+      '[data-id="card-front-expiry-date"]'
+    );
+    const cardBackCvv = document.querySelector('[data-id="card-back-cvv"]');
 
     function validateField(field) {
       const errorMessageWrapper = document.querySelector(
@@ -488,6 +602,39 @@
       if (cardForm.classList.contains("touched")) {
         applyValidationsForAllFields();
       }
+
+      switch (event.target.name) {
+        case "card-name":
+          cardFrontName.textContent = event.target.value;
+          break;
+        case "card-number":
+          cardFrontNumber.textContent = event.target.value;
+          break;
+        case "card-expiry-month": {
+          const year = cardFrontExpiryDate.textContent.slice(
+            cardFrontExpiryDate.textContent.indexOf("/") + 1
+          );
+          const shouldRemoveExpiryDate = !event.target.value && !year;
+          cardFrontExpiryDate.textContent = !shouldRemoveExpiryDate
+            ? event.target.value + "/" + year
+            : "";
+          break;
+        }
+        case "card-expiry-year": {
+          const month = cardFrontExpiryDate.textContent.slice(
+            0,
+            cardFrontExpiryDate.textContent.indexOf("/")
+          );
+          const shouldRemoveExpiryDate = !event.target.value && !month;
+          cardFrontExpiryDate.textContent = !shouldRemoveExpiryDate
+            ? month + "/" + event.target.value
+            : "";
+          break;
+        }
+        case "card-cvc":
+          cardBackCvv.textContent = event.target.value;
+          break;
+      }
     });
 
     cardForm.addEventListener("submit", (event) => {
@@ -507,6 +654,11 @@
     completedButton.addEventListener("click", (event) => {
       cardCompletedForm.classList.add("form__completed--hidden");
       cardForm.classList.remove("touched", "form--hidden");
+      cardFrontName.textContent = "";
+      cardFrontNumber.textContent = "";
+      cardFrontExpiryDate.textContent = "";
+      cardFrontExpiryDate.textContent = "";
+      cardBackCvv.textContent = "";
     });
   </script>
 </html>
