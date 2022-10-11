@@ -414,16 +414,22 @@
               alt="Card logo displayed on the top left of the front card"
             />
             <div class="cards__front__details">
-              <p class="cards__front__number" data-id="card-front-number"></p>
-              <p class="cards__front__name" data-id="card-front-name"></p>
+              <p class="cards__front__number" data-id="card-front-number">
+                0000 0000 0000 0000
+              </p>
+              <p class="cards__front__name" data-id="card-front-name">
+                Jane Appleseed
+              </p>
               <p
                 class="cards__front__expiry-date"
                 data-id="card-front-expiry-date"
-              ></p>
+              >
+                00/00
+              </p>
             </div>
           </div>
           <div class="cards__back">
-            <p class="cards__back__cvv" data-id="card-back-cvv"></p>
+            <p class="cards__back__cvv" data-id="card-back-cvv">000</p>
           </div>
         </div>
       </aside>
@@ -446,7 +452,7 @@
             <input
               id="card-number"
               type="text"
-              placeholder="e.g. 1234 8888 6574 0000"
+              placeholder="e.g. 0000 0000 0000 0000"
               autocomplete="cc-number"
               name="card-number"
               required
@@ -493,7 +499,7 @@
               <input
                 id="card-cvc"
                 type="number"
-                placeholder="e.g. 123"
+                placeholder="e.g. 000"
                 autocomplete="cc-csc"
                 name="card-cvc"
                 required
@@ -539,6 +545,12 @@
       REQUIRED: "Can't be blank",
       PATTERN: "Wrong format",
       SHORT: "These is still missing characters",
+    };
+    const DEFAULT_CARDS_TEXTS = {
+      NUMBER: "0000 0000 0000 0000",
+      NAME: "Jane Appleseed",
+      CVV: "000",
+      EXPIRY_DATE: "00/00",
     };
     const PATTERN_MESSAGES_PER_FIELD = {
       "card-number": "Wrong format, numbers and space only",
@@ -603,21 +615,27 @@
         applyValidationsForAllFields();
       }
 
+      const isNewValueEmpty = !event.target.value;
+
       switch (event.target.name) {
         case "card-name":
-          cardFrontName.textContent = event.target.value;
+          cardFrontName.textContent = isNewValueEmpty
+            ? DEFAULT_CARDS_TEXTS.NAME
+            : event.target.value;
           break;
         case "card-number":
-          cardFrontNumber.textContent = event.target.value;
+          cardFrontNumber.textContent = isNewValueEmpty
+            ? DEFAULT_CARDS_TEXTS.NUMBER
+            : event.target.value;
           break;
         case "card-expiry-month": {
           const year = cardFrontExpiryDate.textContent.slice(
             cardFrontExpiryDate.textContent.indexOf("/") + 1
           );
-          const shouldRemoveExpiryDate = !event.target.value && !year;
+          const shouldRemoveExpiryDate = isNewValueEmpty && !year;
           cardFrontExpiryDate.textContent = !shouldRemoveExpiryDate
             ? event.target.value + "/" + year
-            : "";
+            : DEFAULT_CARDS_TEXTS.EXPIRY_DATE;
           break;
         }
         case "card-expiry-year": {
@@ -625,14 +643,16 @@
             0,
             cardFrontExpiryDate.textContent.indexOf("/")
           );
-          const shouldRemoveExpiryDate = !event.target.value && !month;
+          const shouldRemoveExpiryDate = isNewValueEmpty && !month;
           cardFrontExpiryDate.textContent = !shouldRemoveExpiryDate
             ? month + "/" + event.target.value
-            : "";
+            : DEFAULT_CARDS_TEXTS.EXPIRY_DATE;
           break;
         }
         case "card-cvc":
-          cardBackCvv.textContent = event.target.value;
+          cardBackCvv.textContent = isNewValueEmpty
+            ? DEFAULT_CARDS_TEXTS.CVV
+            : event.target.value;
           break;
       }
     });
@@ -654,11 +674,10 @@
     completedButton.addEventListener("click", (event) => {
       cardCompletedForm.classList.add("form__completed--hidden");
       cardForm.classList.remove("touched", "form--hidden");
-      cardFrontName.textContent = "";
-      cardFrontNumber.textContent = "";
-      cardFrontExpiryDate.textContent = "";
-      cardFrontExpiryDate.textContent = "";
-      cardBackCvv.textContent = "";
+      cardFrontName.textContent = DEFAULT_CARDS_TEXTS.NAME;
+      cardFrontNumber.textContent = DEFAULT_CARDS_TEXTS.NUMBER;
+      cardFrontExpiryDate.textContent = DEFAULT_CARDS_TEXTS.EXPIRY_DATE;
+      cardBackCvv.textContent = DEFAULT_CARDS_TEXTS.CVV;
     });
   </script>
 </html>
