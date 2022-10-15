@@ -1,4 +1,5 @@
 import { Button } from "components/button";
+import { ClientsGroup } from "components/clients-group";
 import { Header } from "components/header";
 import { Heading } from "components/heading";
 import { Hero } from "components/hero";
@@ -24,6 +25,10 @@ const ContentWrapperSection = styled.section`
   align-items: center;
 `;
 
+const StyledButton = styled(Button)`
+  margin-bottom: 40px;
+`;
+
 function App() {
   return (
     <>
@@ -35,7 +40,8 @@ function App() {
           Get your team in sync, no matter your location. Streamline processes,
           create team rituals, and watch productivity soar.
         </StyledText>
-        <Button variation="primary">Learn more</Button>
+        <StyledButton variation="primary">Learn more</StyledButton>
+        <ClientsGroup />
       </ContentWrapperSection>
     </>
   );
