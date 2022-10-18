@@ -3,8 +3,10 @@ import { ClientsGroup } from "components/clients-group";
 import { Header } from "components/header";
 import { Heading } from "components/heading";
 import { Hero } from "components/hero";
+import { SideMenu } from "components/side-menu";
 import { BREAKPOINTS, GLOBAL_VARIABLES } from "components/styles.config";
 import { Text } from "components/text";
+import { useMenu } from "state/menu/MenuProvider";
 import styled from "styled-components";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -87,6 +89,7 @@ const StyledClientsGroup = styled(ClientsGroup)`
 
 function App() {
   const isGteMd = useMediaQuery(`(min-width: ${BREAKPOINTS.MD})`);
+  const { isOpen } = useMenu();
 
   return (
     <>
@@ -105,6 +108,7 @@ function App() {
           <StyledClientsGroup />
         </ContentWrapperSection>
       </Main>
+      {isOpen && <SideMenu />}
     </>
   );
 }
