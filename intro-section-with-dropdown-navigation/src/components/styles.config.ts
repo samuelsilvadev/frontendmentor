@@ -9,3 +9,10 @@ export const BREAKPOINTS = {
   MD: "960px",
   LG: "1440px",
 };
+
+export const GLOBAL_VARIABLES = {
+  HEADER_HEIGHT: {
+    SM: "60px",
+    MD: "100PX",
+  },
+};
