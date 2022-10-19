@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "copy-files-from-to": "^3.2.2",
     "turbo": "^1.5.6"
   },
   "scripts": {
