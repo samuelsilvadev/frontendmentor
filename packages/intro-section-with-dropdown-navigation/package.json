@@ -2,7 +2,7 @@
   "name": "@frontend-mentor/intro-section-with-dropdown-navigation",
   "version": "0.0.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "./intro-section-with-dropdown-navigation",
   "devDependencies": {
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
