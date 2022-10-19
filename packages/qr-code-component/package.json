@@ -1,0 +1,14 @@
+{
+  "name": "@frontend-mentor/qr-code-component",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "copy": "yarn copy-files-from-to"
+  },
+  "copyFiles": [
+    {
+      "from": "./**/*",
+      "to": "../../public/qr-code-component"
+    }
+  ]
+}
