@@ -7,7 +7,14 @@
   },
   "copyFiles": [
     {
-      "from": "./**/*",
+      "from": [
+        "./**/*",
+        "!.turbo",
+        "!.gitignore",
+        "!*.md",
+        "!design",
+        "!package.json"
+      ],
       "to": "../../public/interactive-card-details-form"
     }
   ]
