@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "yarn copy-files-from-to",
+    "copy": "yarn copy-files-from-to",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "check-types": "yarn tsc"
