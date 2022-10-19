@@ -1,0 +1,14 @@
+{
+  "name": "@frontend-mentor/notifications-page",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "copy": "yarn copy-files-from-to"
+  },
+  "copyFiles": [
+    {
+      "from": "./**/*",
+      "to": "../../public/notifications-page"
+    }
+  ]
+}

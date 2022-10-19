@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/notifications-page/images/favicon-32x32.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap"
+    />
+
+    <title>Frontend Mentor | Notifications page</title>
+
+    <style>
+      :root {
+        --colors-primary-red: hsl(1, 90%, 64%);
+        --colors-primary-blue: hsl(219, 85%, 26%);
+
+        --colors-neutral-white: hsl(0, 0%, 100%);
+        --colors-neutral-light-grayish-blue-0: hsl(210, 60%, 98%);
+        --colors-neutral-light-grayish-blue-1: hsl(211, 68%, 94%);
+        --colors-neutral-light-grayish-blue-2: hsl(205, 33%, 90%);
+        --colors-neutral-grayish-blue: hsl(219, 14%, 63%);
+        --colors-neutral-dark-grayish-blue: hsl(219, 12%, 42%);
+        --colors-neutral-dark-blue: hsl(224, 21%, 14%);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--colors-neutral-white);
+        font-family: "Plus Jakarta Sans";
+      }
+
+      .content {
+        background-color: var(--colors-neutral-white);
+        padding: 24px 12px 24px;
+        margin-bottom: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .header__title {
+        font-size: 20px;
+        display: flex;
+      }
+
+      .header__mark-all-read {
+        background-color: transparent;
+        color: var(--colors-neutral-grayish-blue);
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .header__mark-all-read:hover,
+      .header__mark-all-read:focus {
+        color: var(--colors-neutral-dark-grayish-blue);
+      }
+
+      .header__mark-all-read:disabled {
+        color: var(--colors-neutral-grayish-blue);
+        cursor: not-allowed;
+      }
+
+      .badge {
+        background-color: var(--colors-primary-blue);
+        color: var(--colors-neutral-white);
+        padding: 2.5px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .badge--left-spacing {
+        margin-left: 10px;
+      }
+
+      .notifications {
+        list-style: none;
+      }
+
+      .notifications li:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .notification__card {
+        display: flex;
+        align-items: flex-start;
+        border-radius: 10px;
+        padding: 10px 20px;
+        gap: 20px;
+      }
+
+      .notification__card--new {
+        background-color: var(--colors-neutral-light-grayish-blue-0);
+      }
+
+      .notification__extra-picture,
+      .notification__avatar {
+        max-width: 40px;
+        width: 100%;
+        flex-shrink: 0;
+      }
+
+      .notification__primary-message {
+        font-weight: normal;
+      }
+
+      .notification__primary-message,
+      .notification__time {
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--colors-neutral-grayish-blue);
+      }
+
+      .notification__link {
+        color: var(--colors-primary-blue);
+        cursor: pointer;
+      }
+
+      .notification__link--secondary {
+        color: var(--colors-neutral-dark-blue);
+      }
+
+      .notification__link--tertiary {
+        color: var(--colors-neutral-dark-grayish-blue);
+      }
+
+      .notification__link:hover,
+      .notification__link:focus {
+        color: var(--colors-primary-blue);
+      }
+
+      .notification__card--new .notification__primary-message::after {
+        content: "";
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        background-color: var(--colors-primary-red);
+        border-radius: 50%;
+        margin-left: 2px;
+      }
+
+      .notification__comment {
+        margin-top: 10px;
+        border: 1px solid var(--colors-neutral-light-grayish-blue-2);
+        border-radius: 5px;
+        padding: 20px 18px;
+        color: var(--colors-neutral-grayish-blue);
+        font-size: 12px;
+      }
+
+      .notification__comment:hover {
+        background-color: var(--colors-neutral-light-grayish-blue-1);
+        cursor: pointer;
+      }
+
+      .notification__extra-picture {
+        border: 2px solid transparent;
+        margin-left: auto;
+        border-radius: 10px;
+      }
+
+      .notification__extra-picture:hover {
+        border-color: var(--colors-neutral-light-grayish-blue-1);
+        cursor: pointer;
+      }
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      @media (min-width: 578px) {
+        body {
+          background-color: var(--colors-neutral-light-grayish-blue-0);
+        }
+
+        .content {
+          max-width: 700px;
+          margin: 50px auto 20px;
+          padding: 36px 24px 24px;
+        }
+
+        .notification__primary-message,
+        .notification__time,
+        .notification__comment {
+          font-size: 15px;
+        }
+
+        .notification__extra-picture,
+        .notification__avatar {
+          max-width: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="content">
+      <header class="header">
+        <h1 class="header__title">
+          Notifications
+          <span data-id="notifications-badge" class="badge badge--left-spacing"
+            >3</span
+          >
+        </h1>
+        <button data-id="button-mark-all-read" class="header__mark-all-read">
+          Mark all as read
+        </button>
+      </header>
+      <ul class="notifications">
+        <li>
+          <article
+            class="notification__card notification__card--new notification__card--activity-on-post"
+          >
+            <img
+              src="/notifications-page/images/avatar-mark-webber.webp"
+              alt="Profile picture of mark webber"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Mark Webber</strong
+                >
+                reacted to your recent post&nbsp;
+                <strong class="notification__link notification__link--tertiary"
+                  >My first tournament today!</strong
+                >
+              </h2>
+              <p class="notification__time">1m ago</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="notification__card notification__card--new">
+            <img
+              src="/notifications-page/images/avatar-angela-gray.webp"
+              alt="Profile picture of Angela gray"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Angela Gray</strong
+                >
+                followed you
+              </h2>
+              <p class="notification__time">5m ago</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="notification__card notification__card--new">
+            <img
+              src="/notifications-page/images/avatar-jacob-thompson.webp"
+              alt="Profile picture of Jacob Thompson"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Jacob Thompson</strong
+                >
+                has joined your group
+                <strong class="notification__link">Chess Club</strong>
+              </h2>
+              <p class="notification__time">1 day ago</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="notification__card">
+            <img
+              src="/notifications-page/images/avatar-rizky-hasanuddin.webp"
+              alt="Profile picture of Rizky Hasanuddin"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Rizky Hasanuddin</strong
+                >
+                sent you a private message
+              </h2>
+              <p class="notification__time">5 days ago</p>
+              <p class="notification__comment">
+                Hello, thanks for setting up the Chess Club. I've been a member
+                for a few weeks now and I'm already having lots of fun and
+                improving my game.
+              </p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="notification__card">
+            <img
+              src="/notifications-page/images/avatar-kimberly-smith.webp"
+              alt="Profile picture of Jacob Thompson"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Kimberly Smith</strong
+                >
+                commented on your picture
+              </h2>
+              <p class="notification__time">1 week ago</p>
+            </div>
+            <img
+              src="/notifications-page/images/image-chess.webp"
+              alt="Kimberly Smith playing chess"
+              class="notification__extra-picture"
+            />
+          </article>
+        </li>
+        <li>
+          <article
+            class="notification__card notification__card--activity-on-post"
+          >
+            <img
+              src="/notifications-page/images/avatar-nathan-peterson.webp"
+              alt="Profile picture of Nathan Peterson"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Nathan Peterson</strong
+                >
+                reacted to your recent post&nbsp;
+                <strong class="notification__link notification__link--tertiary"
+                  >5 end-game strategies to increase your win rate</strong
+                >
+              </h2>
+              <p class="notification__time">2 weeks ago</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="notification__card">
+            <img
+              src="/notifications-page/images/avatar-anna-kim.webp"
+              alt="Profile picture of Anna Kim"
+              class="notification__avatar"
+            />
+            <div>
+              <h2 class="notification__primary-message">
+                <strong class="notification__link notification__link--secondary"
+                  >Anna Kim</strong
+                >
+                left the group
+                <strong class="notification__link">Chess Club</strong>
+              </h2>
+              <p class="notification__time">2 weeks ago</p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </main>
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/samuelsilvadev" target="_blank"
+        >Samuel Silva</a
+      >.
+    </footer>
+    <script>
+      (() => {
+        const readAllNotificationsButton = document.querySelector(
+          '[data-id="button-mark-all-read"]'
+        );
+
+        function removeNewNotificationClassName(notificationElement) {
+          notificationElement.classList.remove("notification__card--new");
+        }
+
+        function handleOnClickReadAllNotifications() {
+          const notificationsBadge = document.querySelector(
+            '[data-id="notifications-badge"]'
+          );
+          const allNewNotifications = document.querySelectorAll(
+            ".notification__card--new"
+          );
+
+          notificationsBadge.textContent = "0";
+          allNewNotifications.forEach(removeNewNotificationClassName);
+          readAllNotificationsButton.setAttribute("disabled", true);
+        }
+
+        readAllNotificationsButton.addEventListener(
+          "click",
+          handleOnClickReadAllNotifications
+        );
+      })();
+    </script>
+  </body>
+</html>
