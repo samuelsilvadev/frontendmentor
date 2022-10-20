@@ -3,6 +3,7 @@
     "pipeline": {
         "build": {},
         "copy": {
+            "cache": false,
             "dependsOn": [
                 "build"
             ]
