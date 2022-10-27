@@ -1,5 +1,6 @@
 import { Button } from "components/button";
 import { ReactComponent as CloseMenuIcon } from "components/icons/icon-close-menu.svg";
+import { Menu } from "components/menu";
 import { useMenu } from "state/menu/MenuProvider";
 import { useEventListener } from "usehooks-ts";
 import { Aside, CloseButtonWrapperDiv } from "./SideMenu.styles";
@@ -22,6 +23,7 @@ export function SideMenu(props: SideMenuProps) {
           <CloseMenuIcon />
         </Button>
       </CloseButtonWrapperDiv>
+      <Menu />
     </Aside>
   );
 }
