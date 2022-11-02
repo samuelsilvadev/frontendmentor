@@ -1,4 +1,3 @@
-import { Button } from "components/button";
 import { MenuList } from "components/menu-list";
 import { MenuStructure } from "components/menu/Menu";
 import { useState } from "react";
@@ -6,6 +5,7 @@ import {
   StyledArrowDownIcon,
   StyledArrowUpIcon,
   StyledIcon,
+  StyledButton,
 } from "./MenuItem.styles";
 
 type MenuItemProps = MenuStructure & React.HTMLAttributes<HTMLElement>;
@@ -38,18 +38,19 @@ export function MenuItem({
 
   return (
     <div {...remainingProps}>
-      <Button
+      <StyledButton
         variation="link"
         onClick={
           hasSubmenus ? handleToggleSubmenus : createOnNavigate(link ?? "/404")
         }
+        full
       >
         <>
           {Icon && <StyledIcon as={Icon} />}
           {label}
           {renderArrowIcon()}
         </>
-      </Button>
+      </StyledButton>
       {hasSubmenus && isSubmenuOpen && <MenuList menus={submenus} />}
     </div>
   );
