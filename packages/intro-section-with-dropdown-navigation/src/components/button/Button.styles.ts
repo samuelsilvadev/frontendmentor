@@ -40,5 +40,11 @@ export const StyledButton = styled.button<{
         color: ${COLORS.MEDIUM_GRAY};
       `;
     }
+
+    if (variation === "basic") {
+      return css`
+        padding: 0;
+      `;
+    }
   }};
 `;
