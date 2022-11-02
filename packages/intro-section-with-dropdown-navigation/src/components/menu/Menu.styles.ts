@@ -4,6 +4,10 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   overflow: auto;
   height: calc(100% - ${GLOBAL_VARIABLES.HEADER_HEIGHT.SM});
+
+  @media (min-width: ${BREAKPOINTS.MD}) {
+    height: calc(100% - ${GLOBAL_VARIABLES.HEADER_HEIGHT.MD});
+  }
 `;
 
 export const MenuUlList = styled.ul`
