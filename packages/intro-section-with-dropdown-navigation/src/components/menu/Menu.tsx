@@ -4,7 +4,7 @@ import { ReactComponent as TodoListIcon } from "components/icons/icon-todo.svg";
 import { ReactComponent as CalendarIcon } from "components/icons/icon-calendar.svg";
 import { ReactComponent as RemindersIcon } from "components/icons/icon-reminders.svg";
 import { ReactComponent as PlanningIcon } from "components/icons/icon-planning.svg";
-import { MenuUlList } from "./Menu.styles";
+import { MenuUlList, Nav } from "./Menu.styles";
 
 type MenuProps = React.HTMLAttributes<HTMLElement>;
 
@@ -72,7 +72,7 @@ export type MenuStructure = {
 
 export function Menu(props: MenuProps) {
   return (
-    <nav {...props}>
+    <Nav {...props}>
       <MenuList menus={MENU_DEFINITION} />
       <MenuUlList>
         <li>
@@ -86,6 +86,6 @@ export function Menu(props: MenuProps) {
           </Button>
         </li>
       </MenuUlList>
-    </nav>
+    </Nav>
   );
 }
