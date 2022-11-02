@@ -10,10 +10,10 @@ export function MenuList({
 }) {
   return (
     <MenuUlList {...remainingProps}>
-      {menus.map(({ label, link, submenus = [] }) => {
+      {menus.map((menu) => {
         return (
-          <li key={label}>
-            <MenuItem label={label} link={link} submenus={submenus} />
+          <li key={menu.label}>
+            <MenuItem {...menu} />
           </li>
         );
       })}

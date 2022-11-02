@@ -3,9 +3,9 @@ import { MenuList } from "components/menu-list";
 import { MenuStructure } from "components/menu/Menu";
 import { useState } from "react";
 import {
-  MenuItemWrapperDiv,
   StyledArrowDownIcon,
   StyledArrowUpIcon,
+  StyledIcon,
 } from "./MenuItem.styles";
 
 type MenuItemProps = MenuStructure & React.HTMLAttributes<HTMLElement>;
@@ -13,6 +13,7 @@ type MenuItemProps = MenuStructure & React.HTMLAttributes<HTMLElement>;
 export function MenuItem({
   label,
   link,
+  icon: Icon,
   submenus = [],
   ...remainingProps
 }: MenuItemProps) {
@@ -36,17 +37,20 @@ export function MenuItem({
   };
 
   return (
-    <MenuItemWrapperDiv {...remainingProps}>
+    <div {...remainingProps}>
       <Button
         variation="link"
         onClick={
           hasSubmenus ? handleToggleSubmenus : createOnNavigate(link ?? "/404")
         }
       >
-        {label}
-        {renderArrowIcon()}
+        <>
+          {Icon && <StyledIcon as={Icon} />}
+          {label}
+          {renderArrowIcon()}
+        </>
       </Button>
       {hasSubmenus && isSubmenuOpen && <MenuList menus={submenus} />}
-    </MenuItemWrapperDiv>
+    </div>
   );
 }
