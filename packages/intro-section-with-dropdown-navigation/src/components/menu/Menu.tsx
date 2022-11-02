@@ -1,50 +1,68 @@
 import { Button } from "components/button";
-import { MenuItem } from "components/menu-item";
+import { MenuList } from "components/menu-list";
 import { MenuUlList } from "./Menu.styles";
 
-type MenuProps = React.HTMLAttributes<HTMLUListElement>;
+type MenuProps = React.HTMLAttributes<HTMLElement>;
 
-const MENU_DEFINITION = [
+const MENU_DEFINITION: MenuStructure[] = [
   {
     label: "Features",
-    children: [
+    submenus: [
       {
-        label: "",
-        link: "",
+        label: "Todo list",
+        link: "/features/todo-list",
+      },
+      {
+        label: "Calendar",
+        link: "/features/calendar",
+      },
+      {
+        label: "Reminders",
+        link: "/features/reminders",
+      },
+      {
+        label: "Planning",
+        link: "/features/planning",
       },
     ],
   },
   {
     label: "Company",
-    children: [
+    submenus: [
       {
-        label: "",
-        link: "",
+        label: "History",
+        link: "/company/history",
+      },
+      {
+        label: "Our team",
+        link: "/company/our-team",
+      },
+      {
+        label: "Blog",
+        link: "/company/blog",
       },
     ],
   },
   {
     label: "Careers",
-    link: "",
+    link: "/careers",
   },
   {
     label: "About",
-    link: "",
+    link: "/about",
   },
 ];
 
+export type MenuStructure = {
+  label: string;
+  link?: string;
+  submenus?: MenuStructure[];
+};
+
 export function Menu(props: MenuProps) {
   return (
-    <>
-      <MenuUlList {...props}>
-        {MENU_DEFINITION.map(({ label, children = [] }) => {
-          return (
-            <li key={label}>
-              <MenuItem label={label} submenus={children} />
-            </li>
-          );
-        })}
-      </MenuUlList>
+    <nav {...props}>
+      <MenuList menus={MENU_DEFINITION} />
       <MenuUlList>
         <li>
           <Button variation="link" full align="center">
@@ -57,6 +75,6 @@ export function Menu(props: MenuProps) {
           </Button>
         </li>
       </MenuUlList>
-    </>
+    </nav>
   );
 }
