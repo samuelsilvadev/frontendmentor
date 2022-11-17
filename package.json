@@ -14,7 +14,7 @@
   },
   "scripts": {
     "copy": "yarn copy-files-from-to",
-    "build": "yarn copy && yarn turbo run build copy"
+    "build": "yarn copy && yarn turbo run lint build copy"
   },
   "copyFiles": [
     {
