@@ -1,6 +1,7 @@
 export const COLORS = {
   ALMOST_WHITE: "hsl(0, 0%, 98%)",
   MEDIUM_GRAY: "hsl(0, 0%, 41%)",
+  DARKER_GRAY: "hsl(0 0% 80%)",
   ALMOST_BLACK: "hsl(0, 0%, 8%)",
   ALMOST_BLACK_ALPHA: "hsl(0 0% 8% / 55%)",
 };

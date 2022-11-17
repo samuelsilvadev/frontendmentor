@@ -4,6 +4,12 @@ import { ReactComponent as ArrowUpIcon } from "components/icons/icon-arrow-up.sv
 import { BREAKPOINTS } from "components/styles.config";
 import { Button } from "components/button";
 
+export const WrapperDiv = styled.div`
+  @media (min-width: calc(${BREAKPOINTS.MD} + 1px)) {
+    position: relative;
+  }
+`;
+
 export const StyledArrowDownIcon = styled(ArrowDownIcon)`
   margin-left: 10px;
 `;
@@ -17,7 +23,11 @@ export const StyledIcon = styled.svg`
 `;
 
 export const StyledButton = styled(Button)`
-  @media (max-width: calc(${BREAKPOINTS.SM} - 1px)) {
+  @media (max-width: calc(${BREAKPOINTS.MD} - 1px)) {
     padding-left: 0;
+  }
+
+  @media (min-width: calc(${BREAKPOINTS.MD} + 1px)) {
+    white-space: nowrap;
   }
 `;

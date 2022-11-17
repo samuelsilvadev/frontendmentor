@@ -1,15 +1,17 @@
+import { forwardRef } from "react";
 import { MenuItem } from "components/menu-item";
 import type { MenuStructure } from "components/menu";
 import { MenuUlList } from "./MenuList.styles";
 
-export function MenuList({
-  menus,
-  ...remainingProps
-}: React.HTMLAttributes<HTMLUListElement> & {
-  menus: MenuStructure[];
-}) {
+export const MenuList = forwardRef<
+  HTMLUListElement,
+  React.HTMLAttributes<HTMLUListElement> & {
+    popup?: boolean;
+    menus: MenuStructure[];
+  }
+>(({ popup, menus, ...remainingProps }, ref) => {
   return (
-    <MenuUlList {...remainingProps}>
+    <MenuUlList {...remainingProps} ref={ref} popup={popup}>
       {menus.map((menu) => {
         return (
           <li key={menu.label}>
@@ -19,4 +21,4 @@ export function MenuList({
       })}
     </MenuUlList>
   );
-}
+});

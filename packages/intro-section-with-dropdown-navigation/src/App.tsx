@@ -88,6 +88,7 @@ const StyledClientsGroup = styled(ClientsGroup)`
 `;
 
 function App() {
+  const isLteMd = useMediaQuery(`(max-width: ${BREAKPOINTS.MD})`);
   const isGteMd = useMediaQuery(`(min-width: ${BREAKPOINTS.MD})`);
   const { isOpen } = useMenu();
 
@@ -108,7 +109,7 @@ function App() {
           <StyledClientsGroup />
         </ContentWrapperSection>
       </Main>
-      {isOpen && <SideMenu />}
+      {isOpen && isLteMd && <SideMenu />}
     </>
   );
 }

@@ -5,8 +5,14 @@ export const Nav = styled.nav`
   overflow: auto;
   height: calc(100% - ${GLOBAL_VARIABLES.HEADER_HEIGHT.SM});
 
-  @media (min-width: ${BREAKPOINTS.MD}) {
-    height: calc(100% - ${GLOBAL_VARIABLES.HEADER_HEIGHT.MD});
+  @media (min-width: calc(${BREAKPOINTS.MD} + 1px)) {
+    overflow: visible;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
   }
 `;
 
@@ -18,9 +24,8 @@ export const MenuUlList = styled.ul`
   gap: 10px;
   margin: 10px 0;
 
-  @media (min-width: ${BREAKPOINTS.SM}) {
-    &:last-of-type {
-      padding: 0 42px;
-    }
+  @media (min-width: calc(${BREAKPOINTS.MD} + 1px)) {
+    flex-direction: row;
+    padding: 0;
   }
 `;
