@@ -1,7 +1,7 @@
 import { MenuList } from "components/menu-list";
 import { MenuStructure } from "components/menu/Menu";
 import { BREAKPOINTS } from "components/styles.config";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useClickAnyWhere, useMediaQuery } from "usehooks-ts";
 import {
   StyledArrowDownIcon,
