@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { StyledButton } from "./Button.styles";
 
 type ButtonProps = {
@@ -8,21 +8,21 @@ type ButtonProps = {
   children: ReactNode;
 } & React.HTMLAttributes<HTMLButtonElement>;
 
-export function Button({
-  children,
-  variation,
-  full = false,
-  align = "start",
-  ...remainingProps
-}: ButtonProps) {
-  return (
-    <StyledButton
-      variation={variation}
-      full={full}
-      align={align}
-      {...remainingProps}
-    >
-      {children}
-    </StyledButton>
-  );
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { children, variation, full = false, align = "start", ...remainingProps },
+    ref
+  ) => {
+    return (
+      <StyledButton
+        ref={ref}
+        variation={variation}
+        full={full}
+        align={align}
+        {...remainingProps}
+      >
+        {children}
+      </StyledButton>
+    );
+  }
+);
