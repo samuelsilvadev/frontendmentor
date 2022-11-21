@@ -5,7 +5,7 @@ export default function Home() {
     <Head>
       <title>News</title>
       <meta name="description" content="Worldwide news curated for you" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon-32x32.png" />
     </Head>
   );
 }
