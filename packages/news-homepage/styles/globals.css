@@ -4,3 +4,16 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --colors-primary-soft-orange: hsl(35, 77%, 62%);
+  --colors-primary-soft-red: hsl(5, 85%, 63%);
+  --colors-neutral-off-white: hsl(36, 100%, 99%);
+  --colors-neutral-grayish-blue: hsl(233, 8%, 79%);
+  --colors-neutral-dark-grayish-blue: hsl(236, 13%, 42%);
+  --colors-neutral-very-dark-blue: hsl(240, 100%, 5%);
+}
+
+body {
+  background-color: var(--colors-neutral-off-white);
+}
