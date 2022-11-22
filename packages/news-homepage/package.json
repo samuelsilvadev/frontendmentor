@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "copy": "copy-files-from-to",
-    "check-types": "tsc"
+    "copy": "yarn copy-files-from-to",
+    "check-types": "yarn tsc"
   },
   "dependencies": {
     "@next/font": "^13.0.4",
@@ -26,7 +26,7 @@
   },
   "copyFiles": [
     {
-      "from": ".next/**/*",
+      "from": "out/**/*",
       "to": "../../public/news-homepage"
     }
   ]
