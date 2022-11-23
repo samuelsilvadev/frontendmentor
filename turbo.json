@@ -12,7 +12,8 @@
                 "lint"
             ],
             "outputs": [
-                ".next/**"
+                ".next/**",
+                "out/**"
             ]
         },
         "copy": {
