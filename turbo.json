@@ -7,6 +7,14 @@
                 "lint"
             ]
         },
+        "news-homepage#build": {
+            "dependsOn": [
+                "lint"
+            ],
+            "outputs": [
+                ".next/**"
+            ]
+        },
         "copy": {
             "cache": false,
             "dependsOn": [
