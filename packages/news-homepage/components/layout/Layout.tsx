@@ -26,7 +26,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
         @media (min-width: 1440px) {
           div {
-            max-width: 1340px;
+            max-width: 1108px;
           }
         }
       `}</style>
