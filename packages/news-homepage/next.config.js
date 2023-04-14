@@ -5,6 +5,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   assetPrefix: isProduction ? "/news-homepage" : undefined,
+  images: {
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
