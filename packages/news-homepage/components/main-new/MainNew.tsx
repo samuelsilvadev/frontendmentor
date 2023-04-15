@@ -1,10 +1,8 @@
 import Image from "next/image";
 
 const images = {
-  mobile:
-    "https://s3.amazonaws.com/frontendmentor/news-homepage/image-web-3-mobile.jpg",
-  desktop:
-    "https://s3.amazonaws.com/frontendmentor/news-homepage/image-web-3-desktop.jpg",
+  mobile: `${process.env.IMAGES_BASE_PATH}/image-web-3-mobile.jpg`,
+  desktop: `${process.env.IMAGES_BASE_PATH}/image-web-3-desktop.jpg`,
 };
 
 type MainNewProps = {
