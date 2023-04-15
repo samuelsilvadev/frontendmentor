@@ -6,7 +6,7 @@ export const data: PostRecommendation[] = [
     subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
     image: {
       alt: "Old white pc",
-      src: "/images/image-retro-pcs.jpg",
+      src: "https://s3.amazonaws.com/frontendmentor/news-homepage/image-retro-pcs.jpg",
     },
   },
   {
@@ -14,7 +14,7 @@ export const data: PostRecommendation[] = [
     subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
     image: {
       alt: "Some keys of a keyboard with red light",
-      src: "/images/image-top-laptops.jpg",
+      src: "https://s3.amazonaws.com/frontendmentor/news-homepage/image-top-laptops.jpg",
     },
   },
   {
@@ -22,7 +22,7 @@ export const data: PostRecommendation[] = [
     subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
     image: {
       alt: "A hand below a white floating controller",
-      src: "/images/image-gaming-growth.jpg",
+      src: "https://s3.amazonaws.com/frontendmentor/news-homepage/image-gaming-growth.jpg",
     },
   },
 ];

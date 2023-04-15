@@ -1,6 +1,11 @@
 import Image from "next/image";
-import mobileImageSrc from "public/images/image-web-3-mobile.jpg";
-import desktopImageSrc from "public/images/image-web-3-desktop.jpg";
+
+const images = {
+  mobile:
+    "https://s3.amazonaws.com/frontendmentor/news-homepage/image-web-3-mobile.jpg",
+  desktop:
+    "https://s3.amazonaws.com/frontendmentor/news-homepage/image-web-3-desktop.jpg",
+};
 
 type MainNewProps = {
   className?: string;
@@ -96,7 +101,7 @@ export const MainNew = ({ className }: MainNewProps) => {
         <div className="image-wrapper">
           <Image
             data-id="image-wrapper-mobile"
-            src={mobileImageSrc}
+            src={images.mobile}
             alt="Multiple blocks glued to each other"
             width="686"
             height="300"
@@ -104,7 +109,7 @@ export const MainNew = ({ className }: MainNewProps) => {
           />
           <Image
             data-id="image-wrapper-desktop"
-            src={desktopImageSrc}
+            src={images.desktop}
             alt="Multiple blocks glued to each other"
             width="1460"
             height="300"
