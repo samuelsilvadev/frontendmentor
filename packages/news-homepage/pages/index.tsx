@@ -1,5 +1,6 @@
 import { MainNew } from "components/main-new";
 import { PostPreview } from "components/post-preview";
+import { PostTextContent } from "components/post-text-content";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import type { PostRecommendation } from "types/PostRecommendation";
@@ -18,14 +19,48 @@ export default function Home({ recommendations }: HomeProps) {
           row-gap: 50px;
         }
 
-        .related-new {
+        .related-new-wrapper {
           background-color: var(--colors-neutral-very-dark-blue);
-          min-height: 300px;
+          padding: 20px;
+          align-self: flex-start;
+        }
+
+        .related-news {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .related-news > li {
+          padding: 35px 0;
+        }
+
+        .related-news > li:not(:last-child) {
+          border-bottom: 1px solid var(--colors-neutral-grayish-blue);
+        }
+
+        .related-news > li:last-child {
+          padding-bottom: 15px;
+        }
+
+        .related-new-title {
+          color: var(--colors-primary-soft-orange);
+          margin: 10px 0 0;
+          font-size: 30px;
+        }
+
+        .text-content-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
         }
 
         .recommendations {
           list-style: none;
           padding: 0;
+          margin: 0;
           display: grid;
           grid-template-columns: 1fr;
           row-gap: 20px;
@@ -53,7 +88,22 @@ export default function Home({ recommendations }: HomeProps) {
       </Head>
       <main>
         <MainNew />
-        <div className="related-new" />
+        <article className="related-new-wrapper">
+          <h2 className="related-new-title">New</h2>
+          <ul className="related-news">
+            {recommendations.map(({ title, subtitle }) => (
+              <li key={title}>
+                <section className="text-content-wrapper">
+                  <PostTextContent
+                    invertTitleColor
+                    title={title}
+                    subtitle={subtitle}
+                  />
+                </section>
+              </li>
+            ))}
+          </ul>
+        </article>
         <ul className="recommendations">
           {recommendations.map(({ title, subtitle, image }, index) => (
             <li key={title}>
