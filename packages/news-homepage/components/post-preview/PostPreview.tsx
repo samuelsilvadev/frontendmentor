@@ -1,3 +1,4 @@
+import { PostTextContent } from "components/post-text-content";
 import Image, { type ImageProps } from "next/image";
 
 type PostPreviewProps = {
@@ -38,21 +39,8 @@ export const PostPreview = ({
         }
 
         .order {
-          grid-row: 1 / 2;
           color: vaR(--colors-neutral-grayish-blue);
           font-size: 28px;
-        }
-
-        .title {
-          grid-row: 2 / 3;
-          font-size: 18px;
-          color: var(--colors-neutral-very-dark-blue);
-        }
-
-        .subtitle {
-          grid-row: 3 / 4;
-          font-size: 15px;
-          color: var(--colors-neutral-grayish-blue);
         }
       `}</style>
       <article className="wrapper">
@@ -66,8 +54,7 @@ export const PostPreview = ({
         <span className="support-text order">
           {order >= 10 ? order : `${order}`.padStart(2, "0")}
         </span>
-        <h2 className="support-text title">{title}</h2>
-        <h3 className="support-text subtitle">{subtitle}</h3>
+        <PostTextContent title={title} subtitle={subtitle} />
       </article>
     </>
   );
