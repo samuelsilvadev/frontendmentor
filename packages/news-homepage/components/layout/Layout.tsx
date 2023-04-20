@@ -3,11 +3,10 @@ import type { ReactNode } from "react";
 import type { Menu } from "types/Menu";
 import logoSrc from "public/images/logo.svg";
 import Image from "next/image";
-console.log("🚀 ~ file: Layout.tsx:5 ~ logoSrc:", logoSrc);
 
-type LayoutProps = { children: ReactNode; menus: Menu[] };
+type LayoutProps = { children: ReactNode; menus?: Menu[] };
 
-export const Layout = ({ children, menus }: LayoutProps) => {
+export const Layout = ({ children, menus = [] }: LayoutProps) => {
   return (
     <>
       <style jsx>{`
