@@ -72,8 +72,14 @@ export default function Home({ recommendations }: HomeProps) {
           .recommendations {
             grid-column: 1 / -1;
             grid-template-columns: repeat(3, 1fr);
+            column-gap: 20px;
+            row-gap: 0;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .recommendations {
             column-gap: 52px;
-            row-gap: auto;
           }
         }
       `}</style>

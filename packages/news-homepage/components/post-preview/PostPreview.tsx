@@ -19,7 +19,7 @@ export const PostPreview = ({
       <style jsx>{`
         .wrapper {
           display: grid;
-          grid-template-columns: 30% 70%;
+          grid-template-columns: 100px minmax(0, 70%);
           grid-template-rows: repeat(3, auto);
           column-gap: 16px;
           row-gap: 8px;
