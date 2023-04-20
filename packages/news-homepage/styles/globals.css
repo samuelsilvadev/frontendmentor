@@ -17,3 +17,9 @@ body {
 body {
   background-color: var(--colors-neutral-off-white);
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
