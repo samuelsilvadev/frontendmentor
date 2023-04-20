@@ -3,10 +3,12 @@ import { PostPreview } from "components/post-preview";
 import { PostTextContent } from "components/post-text-content";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
+import type { Menu } from "types/Menu";
 import type { PostRecommendation } from "types/PostRecommendation";
 
 type HomeProps = {
   recommendations: PostRecommendation[];
+  menus: Menu[];
 };
 
 export default function Home({ recommendations }: HomeProps) {
@@ -26,9 +28,6 @@ export default function Home({ recommendations }: HomeProps) {
         }
 
         .related-news {
-          padding: 0;
-          margin: 0;
-          list-style: none;
           display: grid;
           grid-template-columns: 1fr;
         }
@@ -58,9 +57,6 @@ export default function Home({ recommendations }: HomeProps) {
         }
 
         .recommendations {
-          list-style: none;
-          padding: 0;
-          margin: 0;
           display: grid;
           grid-template-columns: 1fr;
           row-gap: 20px;
@@ -122,11 +118,13 @@ export default function Home({ recommendations }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const response = await import("data/recommendations");
+  const recommendationsResponse = await import("data/recommendations");
+  const menusResponse = await import("data/menu");
 
   return {
     props: {
-      recommendations: response.data,
+      recommendations: recommendationsResponse.data,
+      menus: menusResponse.data,
     },
   };
 };
