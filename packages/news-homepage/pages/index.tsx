@@ -3,6 +3,7 @@ import { PostPreview } from "components/post-preview";
 import { PostTextContent } from "components/post-text-content";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
+import type { ContentResponse } from "types/ContentResponse";
 import type { Menu } from "types/Menu";
 import type { PostRecommendation } from "types/PostRecommendation";
 
@@ -124,13 +125,13 @@ export default function Home({ recommendations }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const recommendationsResponse = await import("data/recommendations");
-  const menusResponse = await import("data/menu");
+  const response = await fetch(process.env.CONTENT_API);
+  const parsedResponse = (await response.json()) as ContentResponse;
 
   return {
     props: {
-      recommendations: recommendationsResponse.data,
-      menus: menusResponse.data,
+      recommendations: parsedResponse["posts-recommendations"],
+      menus: parsedResponse.menus,
     },
   };
 };

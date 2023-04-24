@@ -47,6 +47,7 @@ export const PostPreview = ({
         <Image
           {...image}
           className="image"
+          src={`${process.env.IMAGES_BASE_PATH}${image.src}`}
           alt={image.alt || ""}
           width={100}
           height={125}
