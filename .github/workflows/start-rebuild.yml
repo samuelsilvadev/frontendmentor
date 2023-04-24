@@ -18,7 +18,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit "ci: forcing rebuild due to new data changes" --allow-empty
+          git commit -m "ci: forcing rebuild due to new data changes" --allow-empty
       
       - name: Push changes
         uses: ad-m/github-push-action@master
