@@ -1,12 +1,21 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import type { Menu } from "types/Menu";
 import logoSrc from "public/images/logo.svg";
 import Image from "next/image";
+import { MenuToggle } from "components/menu-toggle";
+import { MenuSidebar } from "components/menu-sidebar";
+import { Menus } from "components/menus";
 
 type LayoutProps = { children: ReactNode; menus?: Menu[] };
 
 export const Layout = ({ children, menus = [] }: LayoutProps) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleSetSidebarOpen = () => setSidebarOpen(true);
+
+  const handleSetSidebarClose = () => setSidebarOpen(false);
+
   return (
     <>
       <style jsx>{`
@@ -27,21 +36,15 @@ export const Layout = ({ children, menus = [] }: LayoutProps) => {
         }
 
         nav {
-          justify-content: space-between;
           flex-grow: 1;
         }
 
-        ul {
+        :global(ul) {
+          margin-top: 122px;
+        }
+
+        nav > :global(ul) {
           display: none;
-        }
-
-        ul :global(a) {
-          color: var(--colors-neutral-dark-grayish-blue);
-          text-decoration: none;
-        }
-
-        ul :global(a:where(:hover, :focus, :active)) {
-          color: var(--colors-primary-soft-orange);
         }
 
         @media (min-width: 769px) {
@@ -50,10 +53,13 @@ export const Layout = ({ children, menus = [] }: LayoutProps) => {
             height: 150px;
           }
 
-          ul {
+          :global(ul) {
+            display: none;
+            margin-top: 0;
+          }
+
+          nav > :global(ul) {
             display: flex;
-            align-items: center;
-            gap: 20px;
           }
         }
 
@@ -69,15 +75,15 @@ export const Layout = ({ children, menus = [] }: LayoutProps) => {
             <Link href="/">
               <Image {...logoSrc} alt="Black brand logo" />
             </Link>
-            <ul>
-              {menus.map(({ path, title }) => (
-                <li key={title}>
-                  <Link href={path}>{title}</Link>
-                </li>
-              ))}
-            </ul>
+            <MenuToggle variation="open" onClick={handleSetSidebarOpen} />
+            <Menus items={menus} />
           </nav>
         </header>
+        {isSidebarOpen && (
+          <MenuSidebar onClose={handleSetSidebarClose}>
+            <Menus items={menus} />
+          </MenuSidebar>
+        )}
         {children}
       </div>
     </>
