@@ -5,7 +5,7 @@ export const Footer = () => {
         .attribution {
           font-size: 11px;
           text-align: center;
-          margin: 20px 0;
+          margin: 50px 0 20px;
         }
 
         .attribution a {
