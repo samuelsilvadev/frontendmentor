@@ -6,10 +6,19 @@ import Image from "next/image";
 import { MenuToggle } from "components/menu-toggle";
 import { MenuSidebar } from "components/menu-sidebar";
 import { Menus } from "components/menus";
+import { Footer } from "components/footer";
 
-type LayoutProps = { children: ReactNode; menus?: Menu[] };
+type LayoutProps = {
+  children: ReactNode;
+  menus?: Menu[];
+  withoutHeader?: boolean;
+};
 
-export const Layout = ({ children, menus = [] }: LayoutProps) => {
+export const Layout = ({
+  children,
+  menus = [],
+  withoutHeader = false,
+}: LayoutProps) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const handleSetSidebarOpen = () => setSidebarOpen(true);
@@ -70,15 +79,17 @@ export const Layout = ({ children, menus = [] }: LayoutProps) => {
         }
       `}</style>
       <div>
-        <header>
-          <nav>
-            <Link href="/">
-              <Image {...logoSrc} alt="Black brand logo" />
-            </Link>
-            <MenuToggle variation="open" onClick={handleSetSidebarOpen} />
-            <Menus items={menus} />
-          </nav>
-        </header>
+        {!withoutHeader && (
+          <header>
+            <nav>
+              <Link href="/">
+                <Image {...logoSrc} alt="Black brand logo" />
+              </Link>
+              <MenuToggle variation="open" onClick={handleSetSidebarOpen} />
+              <Menus items={menus} />
+            </nav>
+          </header>
+        )}
         {isSidebarOpen && (
           <MenuSidebar onClose={handleSetSidebarClose}>
             <Menus items={menus} />
@@ -86,6 +97,7 @@ export const Layout = ({ children, menus = [] }: LayoutProps) => {
         )}
         {children}
       </div>
+      <Footer />
     </>
   );
 };
