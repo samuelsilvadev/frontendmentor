@@ -11,8 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Debug received content
-        run: |
-          echo "${{ github.event }}"
+      - name: Create Empty Commit
+        uses: velocibear/create-empty-commit@v1.0.0
+        with:
+          token: ${{ secrets.PAT_TOKEN_FRONTEND_MENTOR }}
+          email: samuelsilvawb@gmail.com
+          name: Samuel Silva
+          message: "ci: forcing rebuild due to new data changes"
+
 
 
