@@ -10,17 +10,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Create Empty Commit
-        uses: velocibear/create-empty-commit@v1.0.0
-        with:
-          token: ${{ secrets.PAT_TOKEN_FRONTEND_MENTOR }}
-          email: samuelsilvawb@gmail.com
-          name: Samuel Silva
-          message: "ci: forcing rebuild due to new data changes"
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit "ci: forcing rebuild due to new data changes" --allow-empty
       
-      - name: Debug git log
-        run: git log --oneline -10
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.head_ref }}
+          github_token: ${{ secrets.PAT_TOKEN_FRONTEND_MENTOR }}
 
 
 
