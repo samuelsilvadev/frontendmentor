@@ -1,6 +1,7 @@
 name: Start project rebuild due to data changes
 
 on:
+  workflow_dispatch:
   repository_dispatch:
 
 jobs:
