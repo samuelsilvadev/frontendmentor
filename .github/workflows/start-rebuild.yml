@@ -18,6 +18,9 @@ jobs:
           email: samuelsilvawb@gmail.com
           name: Samuel Silva
           message: "ci: forcing rebuild due to new data changes"
+      
+      - name: Debug git log
+        run: git log --oneline -10
 
 
 
