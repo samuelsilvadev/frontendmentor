@@ -1,0 +1,17 @@
+name: Start project rebuild due to data changes
+
+on:
+  repository_dispatch:
+
+jobs:
+  apply-empty-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Debug received content
+        run: |
+          echo "${{ github.event }}"
+
+
