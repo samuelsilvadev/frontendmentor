@@ -16,6 +16,11 @@
                 "out/**"
             ]
         },
+        "news-homepage#copy": {
+            "dependsOn": [
+                "build"
+            ]
+        },
         "copy": {
             "cache": false,
             "dependsOn": [
