@@ -39,7 +39,7 @@ export const PostPreview = ({
         }
 
         .order {
-          color: vaR(--colors-neutral-grayish-blue);
+          color: var(--colors-neutral-grayish-blue);
           font-size: 28px;
         }
       `}</style>
