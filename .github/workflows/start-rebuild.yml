@@ -25,6 +25,3 @@ jobs:
         with:
           branch: ${{ github.head_ref }}
           github_token: ${{ secrets.PAT_TOKEN_FRONTEND_MENTOR }}
-
-
-
