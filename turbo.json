@@ -5,20 +5,19 @@
         "build": {
             "dependsOn": [
                 "lint"
+            ],
+            "outputs": [
+                "build/**"
             ]
         },
-        "news-homepage#build": {
+        "@frontend-mentor/news-homepage#build": {
+            "cache": false,
             "dependsOn": [
                 "lint"
             ],
             "outputs": [
                 ".next/**",
                 "out/**"
-            ]
-        },
-        "news-homepage#copy": {
-            "dependsOn": [
-                "build"
             ]
         },
         "copy": {
