@@ -6,14 +6,18 @@ import Head from "next/head";
 import type { ContentResponse } from "types/ContentResponse";
 import type { Menu } from "types/Menu";
 import type { PostRecommendation } from "types/PostRecommendation";
+import type { RelatedPost } from "types/RelatedPost";
 import { logger } from "utils/logger";
 
 type HomeProps = {
   recommendations: PostRecommendation[];
   menus: Menu[];
+  relatedPosts: RelatedPost[];
 };
 
-export default function Home({ recommendations }: HomeProps) {
+export default function Home({ recommendations, relatedPosts }: HomeProps) {
+  const hasRelatedPosts = relatedPosts.length > 0;
+
   return (
     <>
       <style jsx>{`
@@ -93,20 +97,31 @@ export default function Home({ recommendations }: HomeProps) {
       <main>
         <MainNew />
         <article className="related-new-wrapper">
-          <h2 className="related-new-title">New</h2>
-          <ul className="related-news">
-            {recommendations.map(({ title, subtitle }) => (
-              <li key={title}>
-                <section className="text-content-wrapper">
-                  <PostTextContent
-                    invertTitleColor
-                    title={title}
-                    subtitle={subtitle}
-                  />
-                </section>
-              </li>
-            ))}
-          </ul>
+          <h2
+            className="related-new-title"
+            style={
+              !hasRelatedPosts
+                ? { marginBottom: "10px", textAlign: "center" }
+                : {}
+            }
+          >
+            {hasRelatedPosts ? "New" : "Nothing related published yet"}
+          </h2>
+          {hasRelatedPosts ? (
+            <ul className="related-news">
+              {relatedPosts.map(({ title, subtitle }) => (
+                <li key={title}>
+                  <section className="text-content-wrapper">
+                    <PostTextContent
+                      invertTitleColor
+                      title={title}
+                      subtitle={subtitle}
+                    />
+                  </section>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </article>
         <ul className="recommendations">
           {recommendations.map(({ title, subtitle, image }, index) => (
@@ -136,8 +151,9 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
     return {
       props: {
-        recommendations: parsedResponse["posts-recommendations"],
-        menus: parsedResponse.menus,
+        recommendations: parsedResponse["posts-recommendations"] ?? [],
+        menus: parsedResponse.menus ?? [],
+        relatedPosts: parsedResponse["related-posts"] ?? [],
       },
     };
   } catch (error) {
@@ -147,6 +163,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         recommendations: [],
         menus: [],
+        relatedPosts: [],
       },
     };
   }
