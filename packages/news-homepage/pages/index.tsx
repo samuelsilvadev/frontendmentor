@@ -6,6 +6,7 @@ import Head from "next/head";
 import type { ContentResponse } from "types/ContentResponse";
 import type { Menu } from "types/Menu";
 import type { PostRecommendation } from "types/PostRecommendation";
+import { logger } from "utils/logger";
 
 type HomeProps = {
   recommendations: PostRecommendation[];
@@ -125,13 +126,26 @@ export default function Home({ recommendations }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const response = await fetch(process.env.CONTENT_API);
-  const parsedResponse = (await response.json()) as ContentResponse;
+  try {
+    const response = await fetch(process.env.CONTENT_API);
+    const parsedResponse = (await response.json()) as ContentResponse;
 
-  return {
-    props: {
-      recommendations: parsedResponse["posts-recommendations"],
-      menus: parsedResponse.menus,
-    },
-  };
+    logger.info(parsedResponse, `GET: ${process.env.CONTENT_API}`);
+
+    return {
+      props: {
+        recommendations: parsedResponse["posts-recommendations"],
+        menus: parsedResponse.menus,
+      },
+    };
+  } catch (error) {
+    logger.error(error, `GET: ${process.env.CONTENT_API}`);
+
+    return {
+      props: {
+        recommendations: [],
+        menus: [],
+      },
+    };
+  }
 };
