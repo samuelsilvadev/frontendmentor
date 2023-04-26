@@ -43,7 +43,7 @@ export const MenuSidebar = ({ onClose, children }: MenuSidebarProps) => {
         <MenuToggle
           variation="close"
           onClick={onClose}
-          style={{ marginTop: "30px" }}
+          style={{ marginTop: "30px", marginBottom: "122px" }}
         />
         {children}
       </aside>

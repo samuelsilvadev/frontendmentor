@@ -49,10 +49,6 @@ export const Layout = ({
           justify-content: space-between;
         }
 
-        :global(ul) {
-          margin-top: 122px;
-        }
-
         nav > :global(ul) {
           display: none;
         }
@@ -61,11 +57,6 @@ export const Layout = ({
           header {
             margin: 50px 0;
             height: 150px;
-          }
-
-          :global(ul) {
-            display: none;
-            margin-top: 0;
           }
 
           nav > :global(ul) {
