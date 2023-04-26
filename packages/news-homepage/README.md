@@ -20,19 +20,18 @@ This is a solution to the [News homepage challenge on Frontend Mentor](https://w
 
 Users should be able to:
 
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- **Bonus**: Toggle the mobile menu (requires some JavaScript)
+- View the optimal layout for the interface depending on their device's screen size ✅
+- See hover and focus states for all interactive elements on the page ✅
+- **Bonus**: Toggle the mobile menu (requires some JavaScript) ✅
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./publiC/images/screenshot.png)
 
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [news-homepage](https://frontendmentor-samuelsilvadev.vercel.app/news-homepage)
 
 ## My process
 
@@ -43,7 +42,13 @@ Users should be able to:
 
 ### Running locally
 
-First, run the development server:
+First create a `.env.local` file and fill it with the variables described on the `.env.local.example` file.
+
+```bash
+  cp .env.local.example .env.local
+```
+
+Then, run the development server:
 
 ```bash
 yarn dev
@@ -53,8 +58,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### What I learned
 
-...
-
-### Useful resources
-
-...
+- Load images using next/image
+- Usage of logging library pino
+- Create different layouts per page on next.js  
+- Deploy images on aws using its CLI
+- Trigger deploy using and event coming from another repository
