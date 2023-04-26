@@ -126,6 +126,8 @@ export default function Home({ recommendations }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  logger.info(`Start fetching on: ${process.env.CONTENT_API}, for page: /`);
+
   try {
     const response = await fetch(process.env.CONTENT_API);
     const parsedResponse = (await response.json()) as ContentResponse;
