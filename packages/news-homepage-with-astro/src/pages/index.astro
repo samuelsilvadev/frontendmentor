@@ -1,6 +1,48 @@
 ---
 import MainNew from "../components/MainNew.astro";
+import RelatedNews from "../components/RelatedNews.astro";
 import Base from "../layouts/Base.astro";
+import type { Menu } from "../types/Menu";
+import type { RelatedNew } from "../types/RelatedNew";
+
+// TODO: migrate to SSG data injection
+const relatedNews: RelatedNew[] = [
+  {
+    title: "Related post 1",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+  },
+  {
+    title: "Related post 2",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+  },
+  {
+    title: "Related post 3",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+  },
+];
+// TODO: migrate to SSG data injection
+const menus: Menu[] = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Docs",
+    path: "/",
+  },
+  {
+    title: "New",
+    path: "/",
+  },
+  {
+    title: "Popular",
+    path: "/",
+  },
+  {
+    title: "Trending",
+    path: "/",
+  },
+];
 ---
 
 <style>
@@ -18,8 +60,9 @@ import Base from "../layouts/Base.astro";
     }
   }
 </style>
-<Base title="News">
+<Base title="News" menus={menus}>
   <main>
     <MainNew />
+    <RelatedNews news={relatedNews} />
   </main>
 </Base>

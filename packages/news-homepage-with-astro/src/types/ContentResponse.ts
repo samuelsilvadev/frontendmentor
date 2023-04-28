@@ -1,9 +1,9 @@
 import type { Menu } from "./Menu";
 import type { PostRecommendation } from "./PostRecommendation";
-import type { RelatedPost } from "./RelatedPost";
+import type { RelatedNew } from "./RelatedNew";
 
 export type ContentResponse = {
   menus?: Menu[];
   "posts-recommendations"?: PostRecommendation[];
-  "related-posts"?: RelatedPost[];
+  "related-posts"?: RelatedNew[];
 };

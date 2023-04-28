@@ -1,0 +1,67 @@
+---
+import type { RelatedNew } from "../types/RelatedNew";
+import PostTextContent from "./PostTextContent.astro";
+
+type Props = {
+  news?: RelatedNew[];
+};
+
+const { news = [] } = Astro.props;
+const hasNews = news.length > 0;
+---
+
+<style>
+  .related-new-wrapper {
+    background-color: var(--colors-neutral-very-dark-blue);
+    padding: 20px;
+    align-self: flex-start;
+  }
+
+  .related-new-title {
+    color: var(--colors-primary-soft-orange);
+    margin: 10px 0 0;
+    font-size: 30px;
+  }
+
+  .news {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .news > li {
+    padding: 35px 0;
+  }
+
+  .news > li:not(:last-child) {
+    border-bottom: 1px solid var(--colors-neutral-grayish-blue);
+  }
+
+  .news > li:last-child {
+    padding-bottom: 15px;
+  }
+</style>
+<article class="related-new-wrapper">
+  <h2
+    class="related-new-title"
+    style={!hasNews ? { marginBottom: "10px", textAlign: "center" } : {}}
+  >
+    {hasNews ? "New" : "Nothing related published yet"}
+  </h2>
+  {
+    hasNews ? (
+      <ul class="news">
+        {news.map(({ title, subtitle }) => (
+          <li>
+            <section class="text-content-wrapper">
+              <PostTextContent
+                invertTitleColor
+                title={title}
+                subtitle={subtitle}
+              />
+            </section>
+          </li>
+        ))}
+      </ul>
+    ) : null
+  }
+</article>

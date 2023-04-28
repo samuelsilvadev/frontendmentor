@@ -7,31 +7,10 @@ import { Image } from "@astrojs/image/components";
 
 type Props = {
   title: string;
+  menus: Menu[];
 };
 
-const { title } = Astro.props;
-const menus: Menu[] = [
-  {
-    title: "Home",
-    path: "/",
-  },
-  {
-    title: "Docs",
-    path: "/",
-  },
-  {
-    title: "New",
-    path: "/",
-  },
-  {
-    title: "Popular",
-    path: "/",
-  },
-  {
-    title: "Trending",
-    path: "/",
-  },
-];
+const { title, menus } = Astro.props;
 ---
 
 <html lang="en">

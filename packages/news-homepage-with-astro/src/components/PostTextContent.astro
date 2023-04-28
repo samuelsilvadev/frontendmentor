@@ -1,0 +1,35 @@
+---
+type Props = {
+  invertTitleColor?: boolean;
+  title: string;
+  subtitle: string;
+};
+
+const { invertTitleColor, title, subtitle } = Astro.props;
+---
+
+<style>
+  .title,
+  .subtitle {
+    margin: 0;
+  }
+
+  .title {
+    font-size: 18px;
+    color: var(--colors-neutral-very-dark-blue);
+  }
+
+  .invertedTitleColor {
+    color: var(--colors-neutral-off-white);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--colors-neutral-grayish-blue);
+  }
+</style>
+
+<h2 class={`title ${invertTitleColor ? "invertedTitleColor" : ""}`}>
+  {title}
+</h2>
+<h3 class="subtitle">{subtitle}</h3>
