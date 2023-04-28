@@ -1,7 +1,25 @@
 ---
+import MainNew from "../components/MainNew.astro";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Home page">
-  <h1>Astro</h1>
+<style>
+  main {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 50px;
+  }
+
+  @media (min-width: 769px) {
+    main {
+      grid-template-columns: minmax(0, 70%) minmax(0, 30%);
+      column-gap: 28px;
+      row-gap: 70px;
+    }
+  }
+</style>
+<Base title="News">
+  <main>
+    <MainNew />
+  </main>
 </Base>
