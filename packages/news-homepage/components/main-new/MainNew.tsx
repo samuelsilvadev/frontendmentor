@@ -5,11 +5,7 @@ const images = {
   desktop: `${process.env.IMAGES_BASE_PATH}/image-web-3-desktop.jpg`,
 };
 
-type MainNewProps = {
-  className?: string;
-};
-
-export const MainNew = ({ className }: MainNewProps) => {
+export const MainNew = () => {
   return (
     <>
       <style jsx>{`
@@ -95,7 +91,7 @@ export const MainNew = ({ className }: MainNewProps) => {
           }
         }
       `}</style>
-      <section className={`main-new-wrapper ${className}`}>
+      <section className="main-new-wrapper">
         <div className="image-wrapper">
           <Image
             data-id="image-wrapper-mobile"
