@@ -3,74 +3,25 @@ import MainNew from "../components/MainNew.astro";
 import Recommendations from "../components/Recommendations.astro";
 import RelatedNews from "../components/RelatedNews.astro";
 import Base from "../layouts/Base.astro";
+import type { ContentResponse } from "../types/ContentResponse";
 import type { Menu } from "../types/Menu";
 import type { PostRecommendation } from "../types/PostRecommendation";
 import type { RelatedNew } from "../types/RelatedNew";
 
-// TODO: migrate to SSG data injection
-const relatedNews: RelatedNew[] = [
-  {
-    title: "Related post 1",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-  },
-  {
-    title: "Related post 2",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-  },
-  {
-    title: "Related post 3",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-  },
-];
-// TODO: migrate to SSG data injection
-const menus: Menu[] = [
-  {
-    title: "Home",
-    path: "/",
-  },
-  {
-    title: "Docs",
-    path: "/",
-  },
-  {
-    title: "New",
-    path: "/",
-  },
-  {
-    title: "Popular",
-    path: "/",
-  },
-  {
-    title: "Trending",
-    path: "/",
-  },
-];
-const recommendations: PostRecommendation[] = [
-  {
-    title: "Reviving retro pc's",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-    image: {
-      alt: "Old white pc",
-      src: "/image-retro-pcs.jpg",
-    },
-  },
-  {
-    title: "Top 10 laptops of 2022",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-    image: {
-      alt: "Some keys of a keyboard with red light",
-      src: "/image-top-laptops.jpg",
-    },
-  },
-  {
-    title: "The Growth of Gaming",
-    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
-    image: {
-      alt: "A hand below a white floating controller",
-      src: "/image-gaming-growth.jpg",
-    },
-  },
-];
+let relatedNews: RelatedNew[] = [];
+let menus: Menu[] = [];
+let recommendations: PostRecommendation[] = [];
+
+try {
+  const response = await fetch(import.meta.env.CONTENT_API);
+  const parsedResponse = (await response.json()) as ContentResponse;
+
+  menus = parsedResponse.menus ?? [];
+  relatedNews = parsedResponse["related-posts"] ?? [];
+  recommendations = parsedResponse["posts-recommendations"] ?? [];
+} catch (error) {
+  console.error(error);
+}
 ---
 
 <style>
