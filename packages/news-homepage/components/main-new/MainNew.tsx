@@ -78,10 +78,6 @@ export const MainNew = () => {
             margin-bottom: 40px;
           }
 
-          .image-wrapper {
-            height: 300px;
-          }
-
           .image-wrapper :global(img[data-id="image-wrapper-mobile"]) {
             display: none !important;
           }
