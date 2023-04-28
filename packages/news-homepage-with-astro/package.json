@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "cross-env MODE=development astro dev",
+    "start": "cross-env MODE=development astro dev",
+    "build": "cross-env MODE=production astro build",
+    "preview": "cross-env MODE=production astro preview",
     "astro": "astro",
     "copy": "yarn copy-files-from-to"
   },
   "dependencies": {
     "@astrojs/image": "^0.16.6",
-    "astro": "^2.2.2"
+    "astro": "^2.2.2",
+    "cross-env": "^7.0.3"
   },
   "prettier": {},
   "copyFiles": [
