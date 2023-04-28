@@ -3,7 +3,6 @@ import GlobalStyles from "../components/GlobalStyles.astro";
 import MenuToggle from "../components/MenuToggle.astro";
 import Menus from "../components/Menus.astro";
 import type { Menu } from "../types/Menu";
-import logoSrc from "../../public/logo.svg";
 import { Image } from "@astrojs/image/components";
 
 type Props = {
@@ -56,8 +55,9 @@ const menus: Menu[] = [
         <nav>
           <a href="/">
             <Image
-              src={logoSrc}
+              src="/logo.svg"
               alt="Black brand logo"
+              format="svg"
               width={65}
               height={40}
             />
