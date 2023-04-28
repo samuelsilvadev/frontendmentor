@@ -1,0 +1,25 @@
+{
+  "name": "@frontend-mentor/news-homepage-with-astro",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "copy": "yarn copy-files-from-to"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.16.6",
+    "astro": "^2.2.2"
+  },
+  "prettier": {},
+  "copyFiles": [
+    {
+      "from": "dist/**/*",
+      "to": "../../public/news-homepage-with-astro"
+    }
+  ]
+}

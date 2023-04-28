@@ -1,0 +1,115 @@
+---
+import GlobalStyles from "../components/GlobalStyles.astro";
+import MenuToggle from "../components/MenuToggle.astro";
+import Menus from "../components/Menus.astro";
+import type { Menu } from "../types/Menu";
+import logoSrc from "../../public/logo.svg";
+import { Image } from "@astrojs/image/components";
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+const menus: Menu[] = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Docs",
+    path: "/",
+  },
+  {
+    title: "New",
+    path: "/",
+  },
+  {
+    title: "Popular",
+    path: "/",
+  },
+  {
+    title: "Trending",
+    path: "/",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div>
+      <GlobalStyles />
+      <header>
+        <nav>
+          <a href="/">
+            <Image
+              src={logoSrc}
+              alt="Black brand logo"
+              width={65}
+              height={40}
+            />
+          </a>
+          <MenuToggle variation="open" />
+          <Menus items={menus} />
+        </nav>
+      </header>
+      <slot />
+    </div>
+  </body>
+</html>
+<style>
+  div {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  header {
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  header,
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  nav {
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  nav > :global(ul) {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    header {
+      margin: 50px 0;
+      height: 150px;
+    }
+
+    nav > :global(ul) {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    div {
+      max-width: 1108px;
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import type { Menu } from "../types/Menu";
+
+type Props = {
+  items: Menu[];
+};
+
+const {items} = Astro.props
+---
+
+<style>
+  ul {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  ul :global(a) {
+    color: var(--colors-neutral-dark-grayish-blue);
+    text-decoration: none;
+  }
+
+  ul :global(a:where(:hover, :focus, :active)) {
+    color: var(--colors-primary-soft-orange);
+  }
+
+  @media (min-width: 769px) {
+    ul {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+</style>
+<ul>
+  {items.map(({ path, title }) => (
+    <li>
+      <a href={path}>{title}</a>
+    </li>
+  ))}
+</ul>

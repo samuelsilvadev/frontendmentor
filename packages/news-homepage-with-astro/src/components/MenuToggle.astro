@@ -1,0 +1,43 @@
+---
+import { Image } from "@astrojs/image/components";
+import menuCloseSrc from "../../public/icon-menu-close.svg";
+import menuOpenSrc from "../../public/icon-menu.svg";
+
+type Props = {
+  variation: "open" | "close";
+  style?: {};
+  onClick?: () => void;
+};
+
+const { variation, style } = Astro.props;
+---
+
+<style>
+  button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+  }
+
+  @media (min-width: 769px) {
+    button {
+      display: none;
+    }
+  }
+</style>
+<button style={style} data-toggle-menu>
+  <Image
+    src={variation === "open" ? menuOpenSrc : menuCloseSrc}
+    alt="Menu toggle"
+    aria-hidden
+    width={24}
+    height={24}
+  />
+</button>
+<script>
+  const button = document.querySelector('[data-toggle-menu]');
+
+  button?.addEventListener('click', () => {
+    console.log('button was clicked')
+  });
+</script>
