@@ -1,8 +1,10 @@
 ---
 import MainNew from "../components/MainNew.astro";
+import Recommendations from "../components/Recommendations.astro";
 import RelatedNews from "../components/RelatedNews.astro";
 import Base from "../layouts/Base.astro";
 import type { Menu } from "../types/Menu";
+import type { PostRecommendation } from "../types/PostRecommendation";
 import type { RelatedNew } from "../types/RelatedNew";
 
 // TODO: migrate to SSG data injection
@@ -43,6 +45,32 @@ const menus: Menu[] = [
     path: "/",
   },
 ];
+const recommendations: PostRecommendation[] = [
+  {
+    title: "Reviving retro pc's",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+    image: {
+      alt: "Old white pc",
+      src: "/image-retro-pcs.jpg",
+    },
+  },
+  {
+    title: "Top 10 laptops of 2022",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+    image: {
+      alt: "Some keys of a keyboard with red light",
+      src: "/image-top-laptops.jpg",
+    },
+  },
+  {
+    title: "The Growth of Gaming",
+    subtitle: "Tempor nostrud sit consectetur aliquip et occaecat minim eu.",
+    image: {
+      alt: "A hand below a white floating controller",
+      src: "/image-gaming-growth.jpg",
+    },
+  },
+];
 ---
 
 <style>
@@ -50,6 +78,10 @@ const menus: Menu[] = [
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 50px;
+  }
+
+  .recommendations {
+    grid-column: 1 / -1;
   }
 
   @media (min-width: 769px) {
@@ -64,5 +96,9 @@ const menus: Menu[] = [
   <main>
     <MainNew />
     <RelatedNews news={relatedNews} />
+    <Recommendations
+      recommendations={recommendations}
+      className="recommendations"
+    />
   </main>
 </Base>

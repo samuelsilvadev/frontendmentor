@@ -1,0 +1,47 @@
+---
+import type { PostRecommendation } from "../types/PostRecommendation";
+import PostPreview from "./PostPreview.astro";
+
+type Props = {
+  recommendations: PostRecommendation[];
+  className?: string;
+};
+
+const { recommendations, className = "" } = Astro.props;
+---
+
+<style>
+  .recommendations {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  @media (min-width: 769px) {
+    .recommendations {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 20px;
+      row-gap: 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recommendations {
+      column-gap: 52px;
+    }
+  }
+</style>
+<ul class={`recommendations ${className}`}>
+  {
+    recommendations.map(({ title, subtitle, image }, index) => (
+      <li>
+        <PostPreview
+          order={index + 1}
+          title={title}
+          subtitle={subtitle}
+          image={image}
+        />
+      </li>
+    ))
+  }
+</ul>
