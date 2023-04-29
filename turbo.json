@@ -20,6 +20,12 @@
                 "out/**"
             ]
         },
+        "@frontend-mentor/news-homepage-with-astro#build": {
+            "cache": false,
+            "outputs": [
+                "dist/**"
+            ]
+        },
         "copy": {
             "cache": false,
             "dependsOn": [
