@@ -23,7 +23,7 @@ const { variation, style } = Astro.props;
     }
   }
 </style>
-<button style={style} data-toggle-menu>
+<button style={style} data-toggle-menu data-variation={variation}>
   <Image
     src={variation === "open" ? "/icon-menu.svg" : "/icon-menu-close.svg"}
     alt="Menu toggle"
@@ -34,9 +34,22 @@ const { variation, style } = Astro.props;
   />
 </button>
 <script>
-  const button = document.querySelector("[data-toggle-menu]");
+  const buttons = document.querySelectorAll("[data-toggle-menu]");
+  const sidebar = document.querySelector(
+    "[data-menu-sidebar]"
+  ) as HTMLElement | null;
 
-  button?.addEventListener("click", () => {
-    console.log("button was clicked");
+  buttons.forEach((button) => {
+    const safeButton = button as HTMLButtonElement;
+
+    safeButton.addEventListener("click", () => {
+      const { variation } = safeButton.dataset;
+
+      if (variation === "open") {
+        sidebar?.removeAttribute("data-closed");
+      } else if (variation === "close") {
+        sidebar?.setAttribute("data-closed", "true");
+      }
+    });
   });
 </script>

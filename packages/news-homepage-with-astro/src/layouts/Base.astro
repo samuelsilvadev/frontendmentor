@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import GlobalStyles from "../components/GlobalStyles.astro";
+import MenuSidebar from "../components/MenuSidebar.astro";
 import MenuToggle from "../components/MenuToggle.astro";
 import Menus from "../components/Menus.astro";
 import type { Menu } from "../types/Menu";
@@ -46,6 +47,9 @@ const { title, menus } = Astro.props;
           <Menus items={menus} />
         </nav>
       </header>
+      <MenuSidebar>
+        <Menus items={menus} />
+      </MenuSidebar>
       <slot />
       <Footer />
     </div>
