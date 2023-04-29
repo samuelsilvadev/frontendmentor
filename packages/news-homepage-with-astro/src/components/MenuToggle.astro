@@ -28,8 +28,8 @@ const { variation, style } = Astro.props;
     src={variation === "open" ? "/icon-menu.svg" : "/icon-menu-close.svg"}
     alt="Menu toggle"
     aria-hidden
-    width={40}
-    height={17}
+    width={variation === "open" ? 40 : 32}
+    height={variation === "open" ? 17 : 31}
     format="svg"
   />
 </button>
