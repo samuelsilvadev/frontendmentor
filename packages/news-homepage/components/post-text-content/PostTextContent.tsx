@@ -19,11 +19,9 @@ export const PostTextContent = ({
 
         .title {
           font-size: 18px;
-          color: var(--colors-neutral-very-dark-blue);
-        }
-
-        .invertedTitleColor {
-          color: var(--colors-neutral-off-white);
+          color: ${invertTitleColor
+            ? "var(--colors-neutral-off-white)"
+            : "var(--colors-neutral-very-dark-blue)"};
         }
 
         .subtitle {
@@ -32,9 +30,7 @@ export const PostTextContent = ({
         }
       `}</style>
       <>
-        <h2 className={`title ${invertTitleColor ? "invertedTitleColor" : ""}`}>
-          {title}
-        </h2>
+        <h2 className="title">{title}</h2>
         <h3 className="subtitle">{subtitle}</h3>
       </>
     </>
