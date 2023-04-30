@@ -6,6 +6,7 @@ import Head from "next/head";
 import type { ContentResponse } from "types/ContentResponse";
 import type { Menu } from "types/Menu";
 import type { PostRecommendation } from "types/PostRecommendation";
+import type { PublishedMainNew } from "types/PublishedMainNew";
 import type { RelatedPost } from "types/RelatedPost";
 import { logger } from "utils/logger";
 
@@ -13,9 +14,14 @@ type HomeProps = {
   recommendations: PostRecommendation[];
   menus: Menu[];
   relatedPosts: RelatedPost[];
+  mainNew: PublishedMainNew | null;
 };
 
-export default function Home({ recommendations, relatedPosts }: HomeProps) {
+export default function Home({
+  recommendations,
+  relatedPosts,
+  mainNew,
+}: HomeProps) {
   const hasRelatedPosts = relatedPosts.length > 0;
 
   return (
@@ -95,7 +101,7 @@ export default function Home({ recommendations, relatedPosts }: HomeProps) {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <main>
-        <MainNew />
+        <MainNew data={mainNew} />
         <article className="related-new-wrapper">
           <h2
             className="related-new-title"
@@ -154,6 +160,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         recommendations: parsedResponse["posts-recommendations"] ?? [],
         menus: parsedResponse.menus ?? [],
         relatedPosts: parsedResponse["related-posts"] ?? [],
+        mainNew: parsedResponse["main-new"] ?? null,
       },
     };
   } catch (error) {
@@ -164,6 +171,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         recommendations: [],
         menus: [],
         relatedPosts: [],
+        mainNew: null,
       },
     };
   }

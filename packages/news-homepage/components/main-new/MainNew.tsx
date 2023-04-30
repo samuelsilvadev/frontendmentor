@@ -1,11 +1,17 @@
 import Image from "next/image";
+import type { PublishedMainNew } from "types/PublishedMainNew";
 
-const images = {
-  mobile: `${process.env.IMAGES_BASE_PATH}/image-web-3-mobile.jpg`,
-  desktop: `${process.env.IMAGES_BASE_PATH}/image-web-3-desktop.jpg`,
-};
+type MainNewProps = { data: PublishedMainNew | null };
 
-export const MainNew = () => {
+export const MainNew = ({ data }: MainNewProps) => {
+  if (!data) {
+    return (
+      <div style={{ backgroundColor: "var(--colors-neutral-grayish-blue)" }} />
+    );
+  }
+
+  const { title, subtitle, desktopImage, mobileImage } = data;
+
   return (
     <>
       <style jsx>{`
@@ -89,31 +95,31 @@ export const MainNew = () => {
       `}</style>
       <section className="main-new-wrapper">
         <div className="image-wrapper">
-          <Image
-            data-id="image-wrapper-mobile"
-            src={images.mobile}
-            alt="Multiple blocks glued to each other"
-            width="686"
-            height="300"
-            sizes="100vw"
-          />
-          <Image
-            data-id="image-wrapper-desktop"
-            src={images.desktop}
-            alt="Multiple blocks glued to each other"
-            width="1460"
-            height="300"
-            sizes="60vw"
-          />
+          {mobileImage && (
+            <Image
+              data-id="image-wrapper-mobile"
+              src={`${process.env.IMAGES_BASE_PATH}${mobileImage.src}`}
+              alt={mobileImage.alt}
+              width="686"
+              height="300"
+              sizes="100vw"
+            />
+          )}
+          {desktopImage && (
+            <Image
+              data-id="image-wrapper-desktop"
+              src={`${process.env.IMAGES_BASE_PATH}${desktopImage.src}`}
+              alt={desktopImage.alt}
+              width="1460"
+              height="300"
+              sizes="60vw"
+            />
+          )}
         </div>
         <div className="content-wrapper">
-          <h1 className="title">The Bright Future of Web 3.0?</h1>
+          <h1 className="title">{title}</h1>
           <div className="content-column-2">
-            <p className="info">
-              We dive into the next evolution of the web that claims to put the
-              power of the platforms back into the hands of the people. But is
-              it really fulfilling its promise?
-            </p>
+            <p className="info">{subtitle}</p>
             <button className="read-more">Read more</button>
           </div>
         </div>
