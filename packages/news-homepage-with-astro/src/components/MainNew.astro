@@ -1,10 +1,12 @@
 ---
 import { Image } from "@astrojs/image/components";
+import type { PublishedMainNew } from "../types/PublishedMainNew";
 
-const images = {
-  mobile: `${import.meta.env.IMAGES_BASE_PATH}/image-web-3-mobile.jpg`,
-  desktop: `${import.meta.env.IMAGES_BASE_PATH}/image-web-3-desktop.jpg`,
-};
+type Props = { data: PublishedMainNew | null };
+
+const { data } = Astro.props;
+const hasData = data !== null;
+const { title, subtitle, desktopImage, mobileImage } = data ?? {};
 ---
 
 <style>
@@ -86,36 +88,42 @@ const images = {
     }
   }
 </style>
-<section class="main-new-wrapper">
-  <div class="image-wrapper">
-    <Image
-      data-id="image-wrapper-mobile"
-      src={images.mobile}
-      alt="Multiple blocks glued to each other"
-      width={686}
-      height={300}
-      sizes="100vw"
-      format="jpg"
-    />
-    <Image
-      data-id="image-wrapper-desktop"
-      src={images.desktop}
-      alt="Multiple blocks glued to each other"
-      width={1460}
-      height={300}
-      sizes="60vw"
-      format="jpg"
-    />
-  </div>
-  <div class="content-wrapper">
-    <h1 class="title">The Bright Future of Web 3.0?</h1>
-    <div class="content-column-2">
-      <p class="info">
-        We dive into the next evolution of the web that claims to put the power
-        of the platforms back into the hands of the people. But is it really
-        fulfilling its promise?
-      </p>
-      <button class="read-more">Read more</button>
-    </div>
-  </div>
-</section>
+{
+  hasData ? (
+    <section class="main-new-wrapper">
+      <div class="image-wrapper">
+        {mobileImage && (
+          <Image
+            data-id="image-wrapper-mobile"
+            src={`${import.meta.env.IMAGES_BASE_PATH}${mobileImage.src}`}
+            alt={mobileImage.alt}
+            width={686}
+            height={300}
+            sizes="100vw"
+            format="jpg"
+          />
+        )}
+        {desktopImage && (
+          <Image
+            data-id="image-wrapper-desktop"
+            src={`${import.meta.env.IMAGES_BASE_PATH}${desktopImage.src}`}
+            alt={desktopImage.alt}
+            width={1460}
+            height={300}
+            sizes="60vw"
+            format="jpg"
+          />
+        )}
+      </div>
+      <div class="content-wrapper">
+        <h1 class="title">{title}</h1>
+        <div class="content-column-2">
+          <p class="info">{subtitle}</p>
+          <button class="read-more">Read more</button>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <div style={{ background: "var(--colors-neutral-grayish-blue)" }} />
+  )
+}

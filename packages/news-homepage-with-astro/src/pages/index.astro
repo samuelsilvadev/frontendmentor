@@ -6,11 +6,13 @@ import Base from "../layouts/Base.astro";
 import type { ContentResponse } from "../types/ContentResponse";
 import type { Menu } from "../types/Menu";
 import type { PostRecommendation } from "../types/PostRecommendation";
+import type { PublishedMainNew } from "../types/PublishedMainNew";
 import type { RelatedNew } from "../types/RelatedNew";
 
 let relatedNews: RelatedNew[] = [];
 let menus: Menu[] = [];
 let recommendations: PostRecommendation[] = [];
+let mainNew: PublishedMainNew | null = null;
 
 try {
   const response = await fetch(import.meta.env.CONTENT_API);
@@ -19,6 +21,7 @@ try {
   menus = parsedResponse.menus ?? [];
   relatedNews = parsedResponse["related-posts"] ?? [];
   recommendations = parsedResponse["posts-recommendations"] ?? [];
+  mainNew = parsedResponse["main-new"] ?? null;
 } catch (error) {
   console.error(error);
 }
@@ -45,7 +48,7 @@ try {
 </style>
 <Base title="News" menus={menus}>
   <main>
-    <MainNew />
+    <MainNew data={mainNew} />
     <RelatedNews news={relatedNews} />
     <Recommendations
       recommendations={recommendations}
