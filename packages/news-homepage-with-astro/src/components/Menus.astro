@@ -5,7 +5,7 @@ type Props = {
   items: Menu[];
 };
 
-const {items} = Astro.props
+const { items } = Astro.props;
 ---
 
 <style>
@@ -17,12 +17,12 @@ const {items} = Astro.props
     width: 100%;
   }
 
-  ul :global(a) {
+  ul a {
     color: var(--colors-neutral-dark-grayish-blue);
     text-decoration: none;
   }
 
-  ul :global(a:where(:hover, :focus, :active)) {
+  ul a:where(:hover, :focus, :active) {
     color: var(--colors-primary-soft-orange);
   }
 
@@ -35,9 +35,11 @@ const {items} = Astro.props
   }
 </style>
 <ul>
-  {items.map(({ path, title }) => (
-    <li>
-      <a href={path}>{title}</a>
-    </li>
-  ))}
+  {
+    items.map(({ path, title }) => (
+      <li>
+        <a href={path}>{title}</a>
+      </li>
+    ))
+  }
 </ul>

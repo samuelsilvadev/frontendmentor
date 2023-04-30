@@ -13,17 +13,17 @@ const images = {
     margin-bottom: 30px;
   }
 
-  .image-wrapper > :global(img) {
+  .image-wrapper > img {
     object-fit: cover;
     max-width: 100%;
     width: 100%;
   }
 
-  .image-wrapper :global(img[data-id="image-wrapper-mobile"]) {
+  .image-wrapper img[data-id="image-wrapper-mobile"] {
     display: inline;
   }
 
-  .image-wrapper :global(img[data-id="image-wrapper-desktop"]) {
+  .image-wrapper img[data-id="image-wrapper-desktop"] {
     display: none !important;
   }
 
@@ -77,11 +77,11 @@ const images = {
       margin-bottom: 40px;
     }
 
-    .image-wrapper :global(img[data-id="image-wrapper-mobile"]) {
+    .image-wrapper img[data-id="image-wrapper-mobile"] {
       display: none !important;
     }
 
-    .image-wrapper :global(img[data-id="image-wrapper-desktop"]) {
+    .image-wrapper img[data-id="image-wrapper-desktop"] {
       display: inline !important;
     }
   }
