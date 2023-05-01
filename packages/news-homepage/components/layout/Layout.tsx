@@ -7,6 +7,8 @@ import { MenuToggle } from "components/menu-toggle";
 import { MenuSidebar } from "components/menu-sidebar";
 import { Menus } from "components/menus";
 import { Footer } from "components/footer";
+import Head from "next/head";
+import faviconSrc from "public/favicon.png";
 
 type LayoutProps = {
   children: ReactNode;
@@ -27,6 +29,9 @@ export const Layout = ({
 
   return (
     <>
+      <Head>
+        <link rel="icon" type="image/png" href={faviconSrc.src} />
+      </Head>
       <style jsx>{`
         header,
         nav {
