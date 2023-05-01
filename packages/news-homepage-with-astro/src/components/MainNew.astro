@@ -1,5 +1,4 @@
 ---
-import { Image } from "@astrojs/image/components";
 import type { PublishedMainNew } from "../types/PublishedMainNew";
 
 type Props = { data: PublishedMainNew | null };
@@ -93,25 +92,21 @@ const { title, subtitle, desktopImage, mobileImage } = data ?? {};
     <section class="main-new-wrapper">
       <div class="image-wrapper">
         {mobileImage && (
-          <Image
+          <img
             data-id="image-wrapper-mobile"
             src={`${import.meta.env.IMAGES_BASE_PATH}${mobileImage.src}`}
             alt={mobileImage.alt}
             width={686}
             height={300}
-            sizes="100vw"
-            format="jpg"
           />
         )}
         {desktopImage && (
-          <Image
+          <img
             data-id="image-wrapper-desktop"
             src={`${import.meta.env.IMAGES_BASE_PATH}${desktopImage.src}`}
             alt={desktopImage.alt}
             width={1460}
             height={300}
-            sizes="60vw"
-            format="jpg"
           />
         )}
       </div>
