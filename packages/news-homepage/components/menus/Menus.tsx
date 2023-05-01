@@ -1,6 +1,3 @@
-import menuOpenSrc from "public/images/icon-menu.svg";
-import menuCloseSrc from "public/images/icon-menu-close.svg";
-import Image from "next/image";
 import type { Menu } from "types/Menu";
 import Link from "next/link";
 
