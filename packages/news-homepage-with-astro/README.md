@@ -1,47 +1,61 @@
-# Astro Starter Kit: Minimal
+# Frontend Mentor - News homepage solution
 
+This is a solution to the [News homepage challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/news-homepage-H6SWTa1MFl). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+
+> This is a second version of the challenge, built using astro. You can find the first version [here](https://github.com/samuelsilvadev/frontendmentor/tree/main/packages/news-homepage).
+
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Running locally](#running-locally)
+  - [What I learned](#what-i-learned)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the interface depending on their device's screen size ✅
+- See hover and focus states for all interactive elements on the page ✅
+- **Bonus**: Toggle the mobile menu (requires some JavaScript) ✅
+
+### Screenshot
+
+![](./public/images/screenshot.png)
+
+### Links
+
+- Live Site URL: [news-homepage-with-astro](https://frontendmentor-samuelsilvadev.vercel.app/news-homepage-with-astro)
+
+## My process
+
+### Built with
+
+- [Astro](https://astro.build/) - SSG framework
+
+### Running locally
+
+First create a `.env` file and fill it with the variables described on the `.env.example` file.
+
+```bash
+  cp .env.example .env
 ```
-npm create astro@latest -- --template minimal
+
+Then, run the development server:
+
+```bash
+yarn dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### What I learned
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Create components on Astro
+- Usage of @astro/image
